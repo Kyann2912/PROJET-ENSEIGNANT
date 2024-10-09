@@ -18,10 +18,35 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'prenoms',
         'email',
+        'contact',
+        'role',
         'password',
     ];
+
+    //relation avec le modèle professeur
+    public function professeur(){
+        return $this->hasOne(Professeur :: class);
+    }
+
+
+
+    //relation avec le modèle administrateur
+    public function administrateur(){
+        return $this->hasOne(Administrateur :: class);
+    }
+
+    //recupérer les admin
+
+    public function isAdmin(){
+        return $this->role === 'admin';
+    }
+
+    public function isProfesseur(){
+        return $this->role === 'professeur';
+    }
 
     /**
      * The attributes that should be hidden for serialization.
