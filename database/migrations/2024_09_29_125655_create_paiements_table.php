@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('paiements', function (Blueprint $table) {
             $table->id();
-            $table->String('nbre_cours');
+            $table->String('email');
+            $table->String('filiere-niveau');
             $table->String('cours');
-            $table->String('filiere');
+            $table->String('nbre-heures');
             $table->decimal('montant');
             $table->unsignedBigInteger('id_professeur');  // attribut pour la clé etrangère
             $table->foreign('id_professeur')->references('id')->on('professeurs')->onDelete('cascade');
