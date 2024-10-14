@@ -6,7 +6,7 @@
     <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/9179c9d0f1.js" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="Tout">
@@ -29,10 +29,59 @@
 
 
         </div>
-        <div class="B">
+
+        <div class="F">
+            <div>
+                <p>UTILISATEURS  <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">0</h1></p>
+                <br>
+                <p class="XC" >PAIEMENTS <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">0</h1></p>
+            </div>
+
+            <div >
+                <div class="YANNO">
+                <p class="VL">OCCCUPATIONS <h1 style="margin-left: -150px;color: rgba(145, 2, 2, 0.827); margin-top: 20px;">0</h1> </p>
+                <br>
+                <div class="espace">
+                    <p class="KL">EMPLOI DU TEMPS  </p><br>
+                    <h1 style="margin-left: 310px;color: rgba(145, 2, 2, 0.827);margin-top: -10px;">0</h1>
+                </div>
+ 
+                <br>
+                </div>
+                <br>
+                <p class="V">FILIERES <h1 style="margin-left: 140px;color: rgba(145, 2, 2, 0.827);">0</h1> </p>
+                <br>
+
+            </div>
+
+        </div>
+        <div class="stat">
+            <div style="width: 620px;height: 340px; margin-left: auto; margin-right: auto;">
+                <canvas id="myPieChart"></canvas>
+            </div>
+        </div>
+        
+        <script>
+            const ctx = document.getElementById('myPieChart').getContext('2d');
+            const data = {
+            labels: ['Utilisateurs', 'Occupations', 'Paiements', 'Filières','Emploi du Temps'],
+            values: [10, 20, 30, 40,34] // Mettez ici vos propres valeurs
+        };
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.values,
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0','black']
+                    }]
+                }
+            });
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     
-        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
@@ -47,7 +96,7 @@
     .A{
         padding-left: 0px;
         background-color: aliceblue;
-        width: 350px;
+        width: 370px;
         height: 551px;
     }
 
@@ -83,13 +132,7 @@
         color: black;
 
     }
-    .B a{
-        background-color:rgb(4, 238, 234) ;
-        color:white;
-        border: 1px solid;
-        border-radius: 5px;
 
-    }
 
     hr{
         border: 2px solid;
@@ -102,6 +145,69 @@
         width: 200px;
         border-radius: 5px;
     }
+
+    .F {
+        font-family:  Times, serif;
+        font-size: 20px;
+        font-weight: bold;
+        display: flex;
+        line-height: 0.3;
+        padding-top: 10px;
+        background-color: aliceblue;
+        width: 990px;
+        height: 200px;
+
+    }
+    .V{
+        margin-left: 130px;
+        margin-top: 28px;
+    }
+
+    .VL{
+        margin-left: 130px;
+
+
+    }
+    .XC{
+        margin-top: 20px;
+    }
+
+
+
+    .YANNO{
+        display: flex;
+    }
+
+    .KL{
+        margin-left: 270px;
+    }
+
+    .espace h1{
+        margin-top: 10px;
+    }
+
+    .stat {
+        margin-left: 350px; 
+        padding-left: 280px;
+        /* border:2px double; */
+        /* border-radius:2px; */
+        /* border-color:aliceblue; */
+        margin-top: 200px;
+        position: fixed;
+        padding-bottom: 20px;
+        box-shadow: 24cm;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     </style>
