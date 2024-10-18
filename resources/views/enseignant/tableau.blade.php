@@ -32,24 +32,24 @@
 
         <div class="F">
             <div>
-                <p>UTILISATEURS  <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">0</h1></p>
+                <p>UTILISATEURS  <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">{{$utilisateur}}</h1></p>
                 <br>
-                <p class="XC" >PAIEMENTS <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">0</h1></p>
+                <p class="XC" >PAIEMENTS <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">{{$paiement}}</h1></p>
             </div>
 
             <div >
                 <div class="YANNO">
-                <p class="VL">OCCCUPATIONS <h1 style="margin-left: -150px;color: rgba(145, 2, 2, 0.827); margin-top: 20px;">0</h1> </p>
+                <p class="VL">OCCCUPATIONS <h1 style="margin-left: -150px;color: rgba(145, 2, 2, 0.827); margin-top: 20px;">{{$salle}}</h1> </p>
                 <br>
                 <div class="espace">
                     <p class="KL">EMPLOI DU TEMPS  </p><br>
-                    <h1 style="margin-left: 310px;color: rgba(145, 2, 2, 0.827);margin-top: -10px;">0</h1>
+                    <h1 style="margin-left: 310px;color: rgba(145, 2, 2, 0.827);margin-top: -10px;">{{$emploi}}</h1>
                 </div>
  
                 <br>
                 </div>
                 <br>
-                <p class="V">FILIERES <h1 style="margin-left: 140px;color: rgba(145, 2, 2, 0.827);">0</h1> </p>
+                <p class="V">FILIERES <h1 style="margin-left: 140px;color: rgba(145, 2, 2, 0.827);">{{$filiere}}</h1> </p>
                 <br>
 
             </div>
@@ -64,7 +64,7 @@
         <script>
             const ctx = document.getElementById('myPieChart').getContext('2d');
             const data = {
-            labels: ['Utilisateurs', 'Occupations', 'Paiements', 'Filières','Emploi du Temps'],
+            labels: @json($data['labels']),
             values: [10, 20, 30, 40,34] // Mettez ici vos propres valeurs
         };
             new Chart(ctx, {
@@ -72,7 +72,7 @@
                 data: {
                     labels: data.labels,
                     datasets: [{
-                        data: data.values,
+                        data: @json($data['values']),
                         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0','black']
                     }]
                 }

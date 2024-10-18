@@ -11,18 +11,19 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <form action="" method="post">
-                <h1>Ajouter une Filière </h1> <br>
-                <label for="">Département</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
-                <label for="">Nom-Filière</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
-                <label for="">Responsable</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
+            <h1>Ajouter une Filière</h1>
+            <br>
+            <form action="{{ route('filiere.store') }}" method="POST">
+                @csrf
+                <label for="departement">Département</label> <br>
+                <input type="text" class="form-control"  name="departement" id="departement"><br>
+                <label for="nom_filiere">Nom-Filière</label> <br>
+                <input type="text" class="form-control"  name="nom_filiere" id="nom_filiere"><br>
+                <label for="responsable">Responsable</label> <br>
+                <input type="text" class="form-control"  name="responsable" id="responsable"><br>
                 <br>
-                <input type="submit" value="Ajouter" class="X">
+                <button class="X" type="submit">Ajouter</button>
             </form>
-
         </div>
         <div class="B">
 
@@ -33,6 +34,7 @@
     
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
   <style>
@@ -125,6 +127,9 @@
         color: white;
         font-family:  Times, serif;
         font-size: 20px;
+        margin-left: 50px;
+
+        /* margin-left: */
 
     }
     .X:hover {

@@ -40,7 +40,6 @@ Route::get('/liste-paiements',[EnseignantController::class,'I']);
 
 Route::get('/filiere',[EnseignantController::class,'J']);
 
-Route::get('/liste-filieres',[EnseignantController::class,'K']);
 
 Route::get('/connexion',[EnseignantController::class,'L']);
 
@@ -55,10 +54,16 @@ Route::get('/message',[EnseignantController::class,'P']);
 
 
 
+Route::post('/filiere/traitement', [EnseignantController::class, 'ajouter_filiere_traitement']);
+
+
+Route::get('/liste-filieres', [EnseignantController::class, 'K']);
 
 
 
+Route::post('/filiere/store', [EnseignantController::class, 'ajouter_filiere_traitement'])->name('filiere.store');
 
 
 
+Route::get('/supprimer/filiere/{id}', [EnseignantController::class, 'supprimer_filiere']);
 

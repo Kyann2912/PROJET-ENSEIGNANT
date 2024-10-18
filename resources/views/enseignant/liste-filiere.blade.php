@@ -20,6 +20,17 @@
         </div>
         <br>
         <table class="table">
+         
+        @if(session('message'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('message') }}
+            </div>
+        @endif
+        @if(session('supprimer'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('supprimer') }}
+            </div>
+        @endif
             <thead>
                 <tr>
                     <th>Id</th>
@@ -30,11 +41,23 @@
                 </tr>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>Alpha</td>
-                <td>IGL-L3</td>
-                <td>10/10/2020</td>
-                <td><a href="" class="btn btn-info">MODIFIER</a> <a href="" class="btn btn-danger">SUPPRIMER</a></td>
+                @php
+                    $yann = 1;
+                @endphp
+                @foreach($filieres as $filiere)
+
+                 <tr>
+                  <td>{{ $yann}}</td>
+                  <td>{{ $filiere->departement }}</td>
+                  <td>{{ $filiere->nom_filiere }}</td>
+                  <td>{{ $filiere->responsable }}</td>
+                  <td><a href="" class="btn btn-info">MODIFIER</a> <a href="/supprimer/filiere/{{ $filiere->id }}" class="btn btn-danger">SUPPRIMER</a></td>
+                 </tr>
+                    @php
+                        $yann++; // Incrémentation
+                    @endphp
+                @endforeach
+
             </tbody>
         </table>
 
