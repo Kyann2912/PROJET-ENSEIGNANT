@@ -19,6 +19,11 @@
         </div>
         <br>
         <table class="table">
+        @if(session('message'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('message') }}
+            </div>
+        @endif
             <thead>
                 <tr>
                     <th>Id</th>

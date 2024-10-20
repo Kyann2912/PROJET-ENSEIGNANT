@@ -11,48 +11,28 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <h1>Ajouter une Occupation </h1> <br>
-            <form action="{{ route('occupation.store') }}" method="POST">
+            <h1>Modifier une Filière</h1>
+            <br>
+            <form action="" method="POST">
                 @csrf
-                <label for="nom_salle">Nom-Salle</label> <br>
-                <input type="text" class="form-control"  name="nom_salle" id=""><br>
-                <label for="">Occupation</label> <br>
-                <select  class="form-select" name="occupation" id="occupation">
-                    <option value="IGL-L1">IGL-L1</option>
-                    <option value="IGL-L2">IGL-L2</option>
-                    <option value="IGL-L3">IGL-L3</option>
-                    <option value="RIT-L1">RIT-L1</option>
-                    <option value="RIT-L2">RIT-L2</option>
-                    <option value="RIT-L3">RIT-L3</option>
-                    <option value="DROIT-L1">DROIT-L1</option>
-                    <option value="DROIT-L2">DROIT-L2</option>
-                    <option value="DROIT-L3">DROIT-L3</option>
-                    <option value="FBA-L1">FBA-L1</option>
-                    <option value="FBA-L2">FBA-L2</option>
-                    <option value="FBA-L3">FBA-L3</option>
-                </select> <br>
-                <label for="">Heures</label> <br>
-                <select  class="form-select" name="heure" id="">
-                    <option value="08h-10h" type="text">08h-10h</option>
-                    <option value="08h-12h"  type="text">08h-12h</option>
-                    <option value="13h-15h"  type="text">13h-15h</option>
-                    <option value="15h-17h"  type="text">15h-17h</option>
-                </select> <br>
-                <label for="">Date</label> <br>
-                <input type="date" class="form-control"  name="date" id=""><br>
+                <label for="departement">Département</label> <br>
+                <input type="text" class="form-control"  name="departement" id="departement" value="{{ filiere->departement }}"><br>
+                <label for="nom_filiere">Nom-Filière</label> <br>
+                <input type="text" class="form-control"  name="nom_filiere" id="nom_filiere" value="{{ filiere->nom_filiere }}" ><br>
+                <label for="responsable">Responsable</label> <br>
+                <input type="text" class="form-control"  name="responsable" id="responsable"  value="{{ filiere->responsable }}"><br>
                 <br>
-                <input type="submit" value="Ajouter" class="X">
+                <button class="X" type="submit">Ajouter</button>
             </form>
-
         </div>
         <div class="B">
 
             <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1>
-            <p>Vous voullez consulter la liste des occupations ajoutés ?</p>
-            <a href="/liste-occupations">Consulter</a> 
-    
+            <p>Vous voullez consulter la liste des filières ajoutés ?</p>
+            <a href="/liste-filieres">Consulter</a>     
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
   <style>
@@ -145,6 +125,9 @@
         color: white;
         font-family:  Times, serif;
         font-size: 20px;
+        margin-left: 50px;
+
+        /* margin-left: */
 
     }
     .X:hover {

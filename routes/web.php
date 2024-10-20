@@ -54,7 +54,12 @@ Route::get('/message',[EnseignantController::class,'P']);
 
 
 
-Route::post('/filiere/traitement', [EnseignantController::class, 'ajouter_filiere_traitement']);
+// Route::post('/filiere/traitement', [EnseignantController::class, 'ajouter_filiere_traitement']);
+
+
+
+// Route::post('/occupation/store', [EnseignantController::class, 'ajout_occupation_traitement'])->name('occupation.store');
+
 
 
 Route::get('/liste-filieres', [EnseignantController::class, 'K']);
@@ -64,6 +69,17 @@ Route::get('/liste-filieres', [EnseignantController::class, 'K']);
 Route::post('/filiere/store', [EnseignantController::class, 'ajouter_filiere_traitement'])->name('filiere.store');
 
 
+Route::post('/occupation/store', [EnseignantController::class, 'ajouter_occupation_traitement'])->name('occupation.store');
+
+
+
 
 Route::get('/supprimer/filiere/{id}', [EnseignantController::class, 'supprimer_filiere']);
 
+
+
+Route :: get('/modifier/filiere/{id}',[EnseignantController::class,'update_filiere']);
+
+
+
+Route::post('/filiere/update', [EnseignantController::class, 'traitement_filiere'])->name('filiere.update');

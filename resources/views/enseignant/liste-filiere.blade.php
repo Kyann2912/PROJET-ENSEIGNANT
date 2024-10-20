@@ -16,11 +16,9 @@
             <hr>
             <a href="/filiere" class="btn btn-success" style="width: 350px;margin-left: 10px; height: 40px;">AJOUTER UNE FILIERE</a>
             <a href="/tableau" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">DASHBOARD</a>
-            <!-- <a href="/filiere.html" class="">AJOUTER UNE FILIERE</a> -->
         </div>
         <br>
         <table class="table">
-         
         @if(session('message'))
             <div class="alert alert-success" role="alert" style="margin:20px;">
                 {{ session('message') }}
@@ -29,6 +27,16 @@
         @if(session('supprimer'))
             <div class="alert alert-success" role="alert" style="margin:20px;">
                 {{ session('supprimer') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('error') }}
+            </div>
+        @endif
+        @if(session('modifier'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('modifier') }}
             </div>
         @endif
             <thead>
@@ -47,11 +55,11 @@
                 @foreach($filieres as $filiere)
 
                  <tr>
-                  <td>{{ $yann}}</td>
+                  <td>{{ $filiere->id}}</td>
                   <td>{{ $filiere->departement }}</td>
                   <td>{{ $filiere->nom_filiere }}</td>
                   <td>{{ $filiere->responsable }}</td>
-                  <td><a href="" class="btn btn-info">MODIFIER</a> <a href="/supprimer/filiere/{{ $filiere->id }}" class="btn btn-danger">SUPPRIMER</a></td>
+                  <td><a href="/modifier/filiere/{{ $filiere->id }}" class="btn btn-info">MODIFIER</a> <a href="/supprimer/filiere/{{ $filiere->id }}" class="btn btn-danger">SUPPRIMER</a></td>
                  </tr>
                     @php
                         $yann++; // Incrémentation
