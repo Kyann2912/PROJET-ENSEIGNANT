@@ -7,6 +7,9 @@ use App\Models\Filiere;  //Modèle filiere
 use App\Models\User; 
 use App\Models\Salle;  //Modèle filiere
 
+use App\Models\Paiement;  //Modèle paiement
+
+
 
 class EnseignantController extends Controller
 {
@@ -33,7 +36,8 @@ class EnseignantController extends Controller
     }
 
     public function G(){
-        return view('enseignant.liste-occupation');
+        $occupations = Salle :: all();
+        return view('enseignant.liste-occupation',compact('occupations'));
     }
 
     public function H(){
@@ -58,6 +62,12 @@ class EnseignantController extends Controller
         $filieres->delete();
         return redirect('/liste-filieres')->with('supprimer','Filière supprimer avec succès');
 
+    }
+
+    public function supprimer_occupation($id){
+        $occupation = Salle :: find($id);
+        $occupation->delete();
+        return redirect('/liste-occupations')->with('supprimer','Occupation supprimer avec succès');
 
     }
 
@@ -106,6 +116,24 @@ class EnseignantController extends Controller
 
     }
 
+    public function ajout_paiement(){
+        $request->valiadte([
+            'email'=>'required',
+            'filiere-niveau'=>'required',
+            'cours'=>'required',
+            'nbre-heures'=>'required',
+            'montant'=>'required',
+        ]);
+
+        $paiement = new Paiement();
+        $paiement->email = $request->$paiement;
+        $paiement->filiere_niveau = $request->$paiement;
+        $paiement->email = $request->$paiement;
+        $paiement->email = $request->$paiement;
+        $paiement->email = $request->$paiement;
+
+    }
+
     public function ajouter_filiere_traitement(Request $request){
 
         $request->validate([
@@ -149,33 +177,56 @@ class EnseignantController extends Controller
 
     public function traitement_filiere(Request $request)
     {
-        // Validate the incoming request
         $request->validate([
             'departement' => 'required',
             'nom_filiere' => 'required',
             'responsable' => 'required',
         ]);
     
-        // Find the Filiere by ID
         $filiere = Filiere::find($request->id);
-        // $filiere = Filiere::find($request->id);
     
-        // Check if the Filiere exists
         if (!$filiere) {
             return redirect('/liste-filieres')->with('error', 'Filière non trouvée');
         }
-    
-        // Update the fields
+
         $filiere->departement = $request->departement;
         $filiere->nom_filiere = $request->nom_filiere;
         $filiere->responsable = $request->responsable;
-    
-        // Save the changes
         $filiere->update();
     
-        // Redirect with success message
         return redirect('/liste-filieres')->with('modifier', 'Filière modifiée avec succès');
     }
+
+    public function update_occupation($id){
+        $occupation = Salle :: find($id);
+        return view ('enseignant.O',compact('occupation'));
+    }
+
+
+    public function modifier_occupation(Request $request){
+
+        $request->validate([
+            'nom_salle' =>'required',
+            'occupation' =>'required',
+            'heure' =>'required',
+            'date' =>'required'
+
+        ]);
+
+        $occupation = Salle::find($request->id);
+
+        if (!$occupation) {
+            return redirect('/liste-occupations')->with('error', 'Occupation non trouvée');
+        }
+        $occupation->nom_salle = $request->nom_salle;
+        $occupation->occupation = $request->occupation;
+        $occupation->heure = $request->heure;
+        $occupation->date = $request->date;
+        $occupation-> update();
+        return redirect('/liste-occupations')->with('modifier', 'Occupation modifiée avec succès');
+    }
+
+
     
 
 

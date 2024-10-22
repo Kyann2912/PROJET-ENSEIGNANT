@@ -11,42 +11,41 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <h1>Ajouter une Occupation </h1> <br>
-            <form action="{{ route('occupation.store') }}" method="POST">
+            <h1>Modifier une Occupation </h1> <br>
+            <form action="{{ route('occupation.update') }}" method="POST">
                 @csrf
+                <input type="hidden" name="id" style="display: none;"  value="{{ $occupation->id }}">
                 <label for="nom_salle">Nom-Salle</label> <br>
-                <input type="text" class="form-control"  name="nom_salle" id=""><br>
+                <input type="text" class="form-control"  name="nom_salle" id="" value="{{ $occupation->nom_salle }}"><br>
                 <label for="">Occupation</label> <br>
                 <select  class="form-select" name="occupation" id="occupation">
-                    <option value="IGL-L1">IGL-L1</option>
-                    <option value="IGL-L2">IGL-L2</option>
-                    <option value="IGL-L3">IGL-L3</option>
-                    <option value="RIT-L1">RIT-L1</option>
-                    <option value="RIT-L2">RIT-L2</option>
-                    <option value="RIT-L3">RIT-L3</option>
-                    <option value="DROIT-L1">DROIT-L1</option>
-                    <option value="DROIT-L2">DROIT-L2</option>
-                    <option value="DROIT-L3">DROIT-L3</option>
-                    <option value="FBA-L1">FBA-L1</option>
-                    <option value="FBA-L2">FBA-L2</option>
-                    <option value="FBA-L3">FBA-L3</option>
+                    <option  value="IGL-L1" {{ $occupation->occupation == 'IGL-L1' ? 'selected' : '' }}>IGL-L2</option>
+                    <option value="IGL-L2"  {{ $occupation->occupation == 'IGL-L2' ? 'selected' : '' }}>IGL-L2</option>
+                    <option  value="IGL-L3" {{ $occupation->occupation == 'IGL-L2' ? 'selected' : '' }}>IGL-L3</option>
+                    <option value="RIT-L1"  {{ $occupation->occupation == 'RIT-L1' ? 'selected' : '' }}>RIT-L1</option>
+                    <option value="RIT-L2"  {{ $occupation->occupation == 'RIT-L2' ? 'selected' : '' }}>RIT-L2</option>
+                    <option value="RIT-L3"  {{ $occupation->occupation == 'RIT-L3' ? 'selected' : '' }}>RIT-L3</option>
+                    <option value="DROIT-L1" {{ $occupation->occupation == 'DROIT-L1' ? 'selected' : '' }}>DROIT-L1</option>
+                    <option value="DROIT-L2" {{ $occupation->occupation == 'DROIT-L2' ? 'selected' : '' }}>DROIT-L2</option>
+                    <option  value="DROIT-L3" {{ $occupation->occupation == 'DROIT-L3' ? 'selected' : '' }}>DROIT-L3</option>
+                    <option  value="FBA-L1" {{ $occupation->occupation == 'FBA-L1' ? 'selected' : '' }}>FBA-L1</option>
+                    <option value="FBA-L2" {{ $occupation->occupation == 'FBA-L2' ? 'selected' : '' }}>FBA-L2</option>
+                    <option  value="FBA-L3" {{ $occupation->occupation == 'FBA-L3' ? 'selected' : '' }}>FBA-L3</option>
                 </select> <br>
                 <label for="">Heures</label> <br>
                 <select  class="form-select" name="heure" id="">
-                    <option value="08h-10h" type="text">08h-10h</option>
-                    <option value="08h-12h"  type="text">08h-12h</option>
-                    <option value="13h-15h"  type="text">13h-15h</option>
-                    <option value="15h-17h"  type="text">15h-17h</option>
-                    <option value="08h-12h"  type="text">08h-12h</option>
-                    <option value="13h-17h"  type="text">13h-17h</option>
-
+                    <option  value="08h-10h" {{ $occupation->heure == '08h-10h' ? 'selected' : '' }}>08h-10h</option>
+                    <option  value="08h-12h" {{ $occupation->heure == '08h-12h' ? 'selected' : '' }}>08h-12h</option>
+                    <option  value="13h-15h" {{ $occupation->heure == '13h-15h' ? 'selected' : '' }}>13h-15h</option>
+                    <option  value="08h-10h" {{ $occupation->heure == '15h-17h' ? 'selected' : '' }}>15h-17h</option>
+                    <option  value="08h-12h" {{ $occupation->heure == '08h-12h' ? 'selected' : '' }}>08h-12h</option>
+                    <option  value="13h-17h" {{ $occupation->heure == '13h-17h' ? 'selected' : '' }}>13h-17h</option>
                 </select> <br>
                 <label for="">Date</label> <br>
-                <input type="date" class="form-control"  name="date" id=""><br>
+                <input type="date" class="form-control"  name="date" id="" value="{{ $occupation->date }}"><br>
                 <br>
-                <input type="submit" value="Ajouter" class="X">
+                <button class="X" type="submit">Modifier</button>
             </form>
-
         </div>
         <div class="B">
 
@@ -122,7 +121,7 @@
     }
     .A h1{
         margin-bottom: 20px;
-        margin-left: 80px;
+        margin-left: 60px;
         font-family:  Times, serif;
         font-weight: bold;
 
@@ -148,6 +147,7 @@
         color: white;
         font-family:  Times, serif;
         font-size: 20px;
+        margin-left:50px;
 
     }
     .X:hover {

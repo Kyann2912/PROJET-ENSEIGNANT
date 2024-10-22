@@ -11,31 +11,31 @@
   <body>
     <div class="Tout">
         <div class="A">
+            <h1>Ajouter un Paiement </h1> <br>
             <form action="" method="post">
-                <h1>Ajouter un Paiement </h1> <br>
                 <label for="">Email-Professeur</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
+                <input type="text" class="form-control"  name="email" id=""><br>
                 <label for="">Filière-Niveau</label> <br>
-                <select  class="form-select" name="" id="">
-                    <option value="">IGL-L1</option>
-                    <option value="">IGL-L2</option>
-                    <option value="">IGL-L3</option>
-                    <option value="">RIT-L1</option>
-                    <option value="">RIT-L2</option>
-                    <option value="">RIT-L3</option>
-                    <option value="">DROIT-L1</option>
-                    <option value="">DROIT-L2</option>
-                    <option value="">DROIT-L3</option>
-                    <option value="">FBA-L1</option>
-                    <option value="">FBA-L2</option>
-                    <option value="">FBA-L3</option>
+                <select  class="form-select" name="filiere-niveau" id="">
+                    <option value="IGL-L1">IGL-L1</option>
+                    <option value="IGL-L2">IGL-L2</option>
+                    <option value="IGL-L3">IGL-L3</option>
+                    <option value="RIT-L1">RIT-L1</option>
+                    <option value="RIT-L2">RIT-L2</option>
+                    <option value="RIT-L3">RIT-L3</option>
+                    <option value="DROIT-L1">DROIT-L1</option>
+                    <option value="DROIT-L2">DROIT-L2</option>
+                    <option value="DROIT-L3">DROIT-L3</option>
+                    <option value="FBA-L1">FBA-L1</option>
+                    <option value="FBA-L12">FBA-L2</option>
+                    <option value="FBA-L3">FBA-L3</option>
                 </select> <br>
                 <label for="">Cours</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
+                <input type="text" class="form-control"  name="cours" id=""><br>
                 <label for="">Nbre-Heures</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
+                <input type="text" class="form-control"  name="nbre-heures" id=""><br>
                 <label for="">Montant</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
+                <input type="text" class="form-control"  name="montant" id=""><br>
                 <br>
                 <input type="submit" value="Ajouter" class="X">
             </form>

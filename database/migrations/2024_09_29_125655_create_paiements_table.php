@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('paiements', function (Blueprint $table) {
             $table->id();
             $table->String('email');
-            $table->String('filiere-niveau');
+            $table->String('filiere_niveau');
             $table->String('cours');
             $table->String('nbre-heures');
             $table->decimal('montant');

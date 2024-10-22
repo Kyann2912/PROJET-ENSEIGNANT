@@ -83,3 +83,20 @@ Route :: get('/modifier/filiere/{id}',[EnseignantController::class,'update_filie
 
 
 Route::post('/filiere/update', [EnseignantController::class, 'traitement_filiere'])->name('filiere.update');
+
+
+
+
+Route::get('/supprimer/occupation/{id}', [EnseignantController::class, 'supprimer_occupation']);
+
+
+
+Route :: get('/modifier/occupation/{id}',[EnseignantController::class,'update_occupation']);
+
+
+
+Route::post('/occupation/update', [EnseignantController::class, 'modifier_occupation'])->name('occupation.update');
+
+// Route::post('/occupation/update', [OccupationController::class, 'update'])->name('occupation.update');
+
+

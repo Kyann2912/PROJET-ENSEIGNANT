@@ -24,6 +24,21 @@
                 {{ session('message') }}
             </div>
         @endif
+        @if(session('supprimer'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('supprimer') }}
+            </div>
+        @endif
+        @if(session('modifier'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('modifier') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('error') }}
+            </div>
+        @endif
             <thead>
                 <tr>
                     <th>Id</th>
@@ -35,12 +50,25 @@
                 </tr>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>Alpha</td>
-                <td>IGL-L3</td>
-                <td>10/10/2020</td>
-                <td>08h-12h</td>
-                <td><a href="" class="btn btn-info">MODIFIER</a> <a href="" class="btn btn-danger">SUPPRIMER</a></td>
+                @php
+                    $yann = 1;
+                @endphp
+                @foreach($occupations as $occupation)
+                 <tr>
+                  <td>{{  $yann  }}</td>
+                  <td>{{  $occupation->nom_salle  }}</td>
+                  <td>{{  $occupation->occupation  }}</td>
+                  <td>{{  $occupation->date  }}</td>
+                  <td>{{  $occupation->heure  }}</td>
+                  <td><a href="/modifier/occupation/{{ $occupation->id }}" class="btn btn-info">MODIFIER</a> <a href="/supprimer/occupation/{{  $occupation->id  }}" class="btn btn-danger">SUPPRIMER</a></td>
+                </tr>
+                @php
+                    $yann++;
+                @endphp
+                @endforeach
+
+
+
             </tbody>
         </table>
 

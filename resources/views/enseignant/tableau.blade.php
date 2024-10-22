@@ -65,7 +65,6 @@
             const ctx = document.getElementById('myPieChart').getContext('2d');
             const data = {
             labels: @json($data['labels']),
-            values: [10, 20, 30, 40,34] // Mettez ici vos propres valeurs
         };
             new Chart(ctx, {
                 type: 'pie',
