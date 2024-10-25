@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('prenoms');
             $table->string('email')->unique();
             $table->string('matiere');
-            $table->string('contact');
             $table->string('role');
             $table->string('password');
             $table->rememberToken();

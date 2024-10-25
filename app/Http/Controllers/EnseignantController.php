@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Filiere;  //Modèle filiere
 use App\Models\User; 
 use App\Models\Salle;  //Modèle filiere
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\Paiement;  //Modèle paiement
 
+use App\Models\Professeur;  
+
+use App\Models\Administrateur;  
 
 
 class EnseignantController extends Controller
@@ -224,6 +228,49 @@ class EnseignantController extends Controller
         $occupation->date = $request->date;
         $occupation-> update();
         return redirect('/liste-occupations')->with('modifier', 'Occupation modifiée avec succès');
+    }
+
+
+    public function ajout_inscription(Request $request){
+
+        $request->validate([
+            'name'=>'required',
+            'prenoms'=>'required',
+            'email'=>'required',
+            'matiere'=>'required',
+            'role'=>'required',
+            'password'=>'required|min:8',
+        ]);
+
+        $user = new User();
+
+        $user ->name = $request->name;
+        $user ->prenoms = $request->prenoms;
+        $user ->email = $request->email;
+        $user ->role = $request->role;
+        $user ->password = Hash::make($request->password);
+
+        //Enregistrement dans la table User
+        $user->save();
+
+        if($user->role === 'admin'){
+            $admin = new Administrateur();
+            $admin->id_user = $user->id;
+            $admin->save();
+        }elseif($user->role ==='professeur'){
+            $professeur = new Professeur();
+
+            $professeur ->cours= $request->cours;
+
+            $professeur->id_user = $user->id;
+
+            $professeur->save();
+
+        }
+
+
+
+
     }
 
 

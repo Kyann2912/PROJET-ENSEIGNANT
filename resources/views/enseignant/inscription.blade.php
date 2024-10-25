@@ -11,23 +11,23 @@
   <body>
     <div class="Tout">
         <div class="A">
+            <h1>Ajouter un Utilisateur </h1> <br>
             <form action="" method="post">
-                <h1>Ajouter un Utilisateur </h1> <br>
                 <label for="">Nom</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
+                <input type="text" class="form-control"  name="name" id=""><br>
                 <label for="">Prenoms</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
+                <input type="text" class="form-control"  name="prenoms" id=""><br>
                 <label for="">Email</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
+                <input type="text" class="form-control"  name="email" id=""><br>
                 <label for="">Matière</label> <br>
                 <input type="text" class="form-control"  name="" id=""><br>
                 <label for="">Rôle</label> <br>
-                <select  class="form-select" name="" id="">
-                    <option value="">Admin</option>
-                    <option value="">Professeur</option>
+                <select  class="form-select" name="role" id="">
+                    <option value="admin">Admin</option>
+                    <option value="professeur">Professeur</option>
                 </select> <br>
                 <label for="">Password</label> <br>
-                <input type="password" class="form-control"  name="" id=""><br>
+                <input type="password" class="form-control"  name="password" id=""><br>
                 <br>
                 <input type="submit" value="Ajouter" class="X">
             </form>
