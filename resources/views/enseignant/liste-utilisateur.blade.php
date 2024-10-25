@@ -24,6 +24,11 @@
         </div>
         <br>
         <table class="table">
+        @if(session('reponse'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('reponse') }}
+            </div>
+        @endif
             <thead>
                 <tr>
                     <th>Id</th>

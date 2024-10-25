@@ -100,3 +100,8 @@ Route::post('/occupation/update', [EnseignantController::class, 'modifier_occupa
 // Route::post('/occupation/update', [OccupationController::class, 'update'])->name('occupation.update');
 
 
+
+Route::post('/inscription/store', [EnseignantController::class, 'ajouter_inscription']);
+
+
+

@@ -7,7 +7,7 @@ use App\Models\Filiere;  //Modèle filiere
 use App\Models\User; 
 use App\Models\Salle;  //Modèle filiere
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Str;
 use App\Models\Paiement;  //Modèle paiement
 
 use App\Models\Professeur;  
@@ -231,48 +231,45 @@ class EnseignantController extends Controller
     }
 
 
-    public function ajout_inscription(Request $request){
-
+    public function ajouter_inscription(Request $request) {
         $request->validate([
-            'name'=>'required',
-            'prenoms'=>'required',
-            'email'=>'required',
-            'matiere'=>'required',
-            'role'=>'required',
-            'password'=>'required|min:8',
+            'name' => 'required',
+            'prenoms' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required_if:role,professeur',
+            'role' => 'required',
+            'password' => 'required_if:role,admin',
         ]);
-
-        $user = new User();
-
-        $user ->name = $request->name;
-        $user ->prenoms = $request->prenoms;
-        $user ->email = $request->email;
-        $user ->role = $request->role;
-        $user ->password = Hash::make($request->password);
-
-        //Enregistrement dans la table User
-        $user->save();
-
-        if($user->role === 'admin'){
+            $user = new User();
+    
+            $user->name = $request->name;
+            $user->prenoms = $request->prenoms;
+            $user->email = $request->email;
+            $user->role = $request->role;
+        
+            if ($user->role === 'admin') {
+                $user->password = Hash::make($request->password);
+            } elseif ($user->role === 'professeur') {
+                $mot_passe = Str::random(8); 
+                $user->password = $mot_passe; 
+            }
+            $user->save();
+    
+        if ($user->role === 'admin') {
             $admin = new Administrateur();
             $admin->id_user = $user->id;
             $admin->save();
-        }elseif($user->role ==='professeur'){
+        } elseif ($user->role === 'professeur') {
             $professeur = new Professeur();
-
-            $professeur ->cours= $request->cours;
-
             $professeur->id_user = $user->id;
-
+            $professeur->matiere= $request->matiere;
             $professeur->save();
-
         }
 
-
-
-
+        return redirect('/connexion');
+    
     }
-
+    
 
     
 

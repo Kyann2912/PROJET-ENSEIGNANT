@@ -12,7 +12,8 @@
     <div class="Tout">
         <div class="A">
             <h1>Ajouter un Utilisateur </h1> <br>
-            <form action="" method="post">
+            <form action="/inscription/store" method="post">
+                @csrf
                 <label for="">Nom</label> <br>
                 <input type="text" class="form-control"  name="name" id=""><br>
                 <label for="">Prenoms</label> <br>
@@ -20,7 +21,7 @@
                 <label for="">Email</label> <br>
                 <input type="text" class="form-control"  name="email" id=""><br>
                 <label for="">Matière</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
+                <input type="text" class="form-control"  name="matiere" id=""><br>
                 <label for="">Rôle</label> <br>
                 <select  class="form-select" name="role" id="">
                     <option value="admin">Admin</option>
