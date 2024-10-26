@@ -19,7 +19,7 @@
                 <input type="text" class="form-control"  name="" id=""><br>
                 <label for="">Motif</label> <br>
                 <div class="Yann">
-                    <input type="text" class="form-control"  name="" id=""><br>
+                    <textarea id="content" name="content"  required class="form-control"></textarea>
                 </div>
                 <br>
                 <input type="submit" value="Contacter" class="X">
@@ -121,7 +121,6 @@
         padding: 5px;
         border-radius: 10px;
         border-color: rgb(4, 238, 234);
-        /* color: rgb(4, 238, 234); */
         background-color:rgb(4, 238, 234) ;
         color: white;
         font-family:  Times, serif;
@@ -141,8 +140,10 @@
         border-radius: 5px;
 
     }
-    .Yann input{
+    .Yann textarea{
         height: 130px;
+        margin-left: 40px;
+        width: 290px;
     }
 
 

@@ -23,7 +23,7 @@
             <br>
             <br>
             <div class="logout">
-                <a href="/connexion">DECONNEXION</a>
+                <a href="/deconnexion/utilisateur">DECONNEXION</a>
             </div>
 
 

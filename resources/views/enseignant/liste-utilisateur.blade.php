@@ -30,24 +30,33 @@
             </div>
         @endif
             <thead>
+                @php
+                    $yann = 1;
+                @endphp
                 <tr>
-                    <th>Id</th>
+                    <th>Numéro</th>
                     <th>Nom</th>
                     <th>Prenoms</th>
                     <th>Email</th>
-                    <th>Matière</th>
                     <th>Rôle</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>Alpha</td>
-                <td>IGL-L3</td>
-                <td>10/10/2020</td>
-                <td>Base de données</td>
-                <td>08h-12h</td>
-                <td><a href="" class="btn btn-info">MODIFIER</a> <a href="" class="btn btn-danger">SUPPRIMER</a></td>
+                @foreach($users as $user)
+                 <tr>
+                  <td>{{ $yann }}</td>
+                  <td>{{ $user->name }}</td>
+                  <td>{{ $user->prenoms }}</td>
+                  <td>{{ $user->email }}</td>
+                  <td>{{ $user->role }}</td>
+                  <td><a href="" class="btn btn-info">MODIFIER</a> <a href="/supprimer/utilisateur/{{ $user->id }}" class="btn btn-danger">SUPPRIMER</a></td>
+                 </tr>
+                @php
+                    $yann++;
+                @endphp
+                @endforeach
+
             </tbody>
         </table>
 

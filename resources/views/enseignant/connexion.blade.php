@@ -18,17 +18,23 @@
         </div>
     
         <div class="A">
-            <form action="" method="post">
-                <h1>Se connecter</h1> <br>
+            <h1>Se connecter</h1> <br>
+            @if(session('message'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('message') }}
+            </div>
+            @endif
+            <form action="/ajouter/utilisateur" method="post">
+                @csrf
                 <label for="">Email</label> <br>
-                 <input type="text" class="form-control"  name="" id=""><br>
+                 <input type="text" class="form-control"  name="email" id=""><br>
                 <label for="">Rôle</label> <br>
-                <select class="form-select" name="" id="">
-                    <option value="">Admin</option>
-                    <option value="">Professeur</option>
+                <select class="form-select" name="role" id="">
+                    <option value="admin">Admin</option>
+                    <option value="professeur">Professeur</option>
                 </select> <br>
                 <label for="">Password</label> <br>
-                <input type="password" class="form-control"  name="" id=""><br>
+                <input type="password" class="form-control"  name="password" id=""><br>
                 <a href="">Mot de Passe Oublié  ?</a> <br>
                 <br>
                 <input type="submit" value="Connexion" class="X">

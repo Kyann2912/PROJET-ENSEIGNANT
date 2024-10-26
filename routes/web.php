@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnseignantController;
+use Illuminate\Support\Facades\Auth;
+
 
 
 /*
@@ -41,7 +43,7 @@ Route::get('/liste-paiements',[EnseignantController::class,'I']);
 Route::get('/filiere',[EnseignantController::class,'J']);
 
 
-Route::get('/connexion',[EnseignantController::class,'L']);
+Route::get('/connexion',[EnseignantController::class,'L'])->name('login');
 
 Route::get('/professeur',[EnseignantController::class,'M']);
 
@@ -102,6 +104,23 @@ Route::post('/occupation/update', [EnseignantController::class, 'modifier_occupa
 
 
 Route::post('/inscription/store', [EnseignantController::class, 'ajouter_inscription']);
+
+
+Route::post('/yann/utilisateur', [EnseignantController::class, 'ako']);
+
+
+
+Route::post('/ajouter/utilisateur',[EnseignantController::class,'login']);
+
+
+
+Route::get('/deconnexion/utilisateur',[EnseignantController::class,'deconnexion']);
+
+
+Route::get('/supprimer/utilisateur/{id}',[EnseignantController::class,'supprimer_utilisateur']);
+
+
+
 
 
 

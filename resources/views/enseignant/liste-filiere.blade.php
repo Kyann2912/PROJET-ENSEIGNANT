@@ -24,6 +24,16 @@
                 {{ session('message') }}
             </div>
         @endif
+        @if(session('success'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('error') }} 
+            </div>
+        @endif
         @if(session('supprimer'))
             <div class="alert alert-success" role="alert" style="margin:20px;">
                 {{ session('supprimer') }}

@@ -9,8 +9,11 @@ use App\Models\Salle;  //Modèle filiere
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Paiement;  //Modèle paiement
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Professeur;  
+use Illuminate\Support\Facades\Mail; //Pour le mail
+use App\Mail\MessageNotification;    //Pour le mail
+
 
 use App\Models\Administrateur;  
 
@@ -32,7 +35,8 @@ class EnseignantController extends Controller
         return view('enseignant.inscription');
     }
     public function E(){
-        return view('enseignant.liste-utilisateur');
+        $users = User:: all();
+        return view('enseignant.liste-utilisateur',compact('users'));
     }
 
     public function F(){
@@ -155,7 +159,7 @@ class EnseignantController extends Controller
         $currentFiliereCount = session('filiere', 0);
         session(['filiere' => $currentFiliereCount + 1]);
 
-        return redirect('/liste-filieres')->with('message','Filière ajouter avec succès');
+        return redirect('/liste-filieres')->with('message','Filière ajouter avec succès')->withInput([]);
 
     }
 
@@ -246,14 +250,21 @@ class EnseignantController extends Controller
             $user->prenoms = $request->prenoms;
             $user->email = $request->email;
             $user->role = $request->role;
+
+            $mot_passe = Str::random(8);
+            $email = $request->email;
+            $name = $request->name;
+            $prenoms = $request->prenoms;
+
         
             if ($user->role === 'admin') {
                 $user->password = Hash::make($request->password);
             } elseif ($user->role === 'professeur') {
-                $mot_passe = Str::random(8); 
-                $user->password = $mot_passe; 
+                $user->password = Hash :: make($mot_passe); 
             }
             $user->save();
+
+
     
         if ($user->role === 'admin') {
             $admin = new Administrateur();
@@ -266,9 +277,49 @@ class EnseignantController extends Controller
             $professeur->save();
         }
 
+        // Envoyer l'email
+        Mail::to($email)->send(new MessageNotification($name,$prenoms,$mot_passe));
+
+        $currentFiliereCount = session('utilisateur', 0);
+        session(['utilisateur' => $currentFiliereCount + 1]);
+
         return redirect('/connexion');
     
     }
+
+    public function login(Request $request){
+        $credentials = $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            if ($user->role === 'admin') {
+                return redirect('/tableau');
+            } elseif ($user->role === 'professeur') {
+                return redirect('/professeur');
+            }
+        }else{
+            return redirect('/connexion')->with('message','Email ou Mot de Passe Incorrect ❌');
+        }
+    }
+
+
+
+
+    public function deconnexion(Request $request){
+        Auth :: logout();
+        return redirect('/connexion');
+    }
+
+    public function supprimer_utilisateur($id){
+        $user = User :: find($id);
+        $user->delete();
+        return redirect('/liste-utilisateurs');
+    }
+
     
 
     
