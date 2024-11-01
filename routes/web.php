@@ -22,36 +22,36 @@ Route::get('/', function () {
 });
 
 
-Route::get('/emploi-temps', [EnseignantController::class,'A']);
+Route::get('/emploi-temps', [EnseignantController::class,'A'])->middleware('auth');
 
-Route::get('/liste-emplois',[EnseignantController::class,'B']);
+Route::get('/liste-emplois',[EnseignantController::class,'B'])->middleware('auth');
 
-Route::get('/tableau',[EnseignantController::class,'C']);
+Route::get('/tableau',[EnseignantController::class,'C'])->middleware('auth');
 
-Route::get('/inscription',[EnseignantController::class,'D']);
+Route::get('/inscription',[EnseignantController::class,'D'])->middleware('auth');
 
-Route::get('/liste-utilisateurs',[EnseignantController::class,'E']);
+Route::get('/liste-utilisateurs',[EnseignantController::class,'E'])->middleware('auth');
 
-Route::get('/occupation',[EnseignantController::class,'F']);
+Route::get('/occupation',[EnseignantController::class,'F'])->middleware('auth');
 
-Route::get('/liste-occupations',[EnseignantController::class,'G']);
+Route::get('/liste-occupations',[EnseignantController::class,'G'])->middleware('auth');
 
-Route::get('/paiement',[EnseignantController::class,'H']);
+Route::get('/paiement',[EnseignantController::class,'H'])->middleware('auth');
 
-Route::get('/liste-paiements',[EnseignantController::class,'I']);
+Route::get('/liste-paiements',[EnseignantController::class,'I'])->middleware('auth');
 
-Route::get('/filiere',[EnseignantController::class,'J']);
+Route::get('/filiere',[EnseignantController::class,'J'])->middleware('auth');
 
 
 Route::get('/connexion',[EnseignantController::class,'L'])->name('login');
 
-Route::get('/professeur',[EnseignantController::class,'M']);
+Route::get('/professeur',[EnseignantController::class,'M'])->middleware('auth');
 
-Route::get('/professeur-emploi',[EnseignantController::class,'N']);
+Route::get('/professeur-emploi',[EnseignantController::class,'N'])->middleware('auth');
 
-Route::get('/professeur-paiement',[EnseignantController::class,'O']);
+Route::get('/professeur-paiement',[EnseignantController::class,'O'])->middleware('auth');
 
-Route::get('/message',[EnseignantController::class,'P']);
+Route::get('/message',[EnseignantController::class,'P'])->middleware('auth');
 
 
 
@@ -64,7 +64,7 @@ Route::get('/message',[EnseignantController::class,'P']);
 
 
 
-Route::get('/liste-filieres', [EnseignantController::class, 'K']);
+Route::get('/liste-filieres', [EnseignantController::class, 'K'])->middleware('auth');
 
 
 
@@ -118,6 +118,14 @@ Route::get('/deconnexion/utilisateur',[EnseignantController::class,'deconnexion'
 
 
 Route::get('/supprimer/utilisateur/{id}',[EnseignantController::class,'supprimer_utilisateur']);
+
+
+Route::get('/detail/utilisateur',[EnseignantController::class,'detail_utilisateur']);
+
+
+Route::get('/audit',[EnseignantController::class,'audit']);
+
+
 
 
 

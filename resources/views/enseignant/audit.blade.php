@@ -12,37 +12,75 @@
     <div class="Tout">
         <div class="A">
             <br>
-            <h1>LISTE DES EMPLOIS DU TEMPS</h1>
+            <h1>AUDIT  DES ACTIVITES SUR LA PLATEFORME</h1>
             <hr>
-            <div class="ensemble">
-                <a href="/emploi-temps" class="btn btn-success" >AJOUTER UN EMPLOI-TEMPS</a>
-                <input type="search" class="form-control " placeholder="kyann372@gmail.com">
-                <a href="" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">RECHERCHER</a>
-                <a href="/tableau" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">DASHBOARD</a>
-            </div>
-
         </div>
         <br>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Email-Professeur</th>
-                    <th>Nom-Fichier</th>
-                    <th>Période-Debut</th>
-                    <th>Période-Fin</th>
-                    <th>Actions</th>
+                    <th>Fonctionnalités</th>
+                    <th>Ajouter</th>
+                    <th>Modifiier</th>
+                    <th>Supprimer</th>
+                    <th>Email Recu</th>
                 </tr>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>Alpha</td>
-                <td>IGL-L3</td>
-                <td>10/10/2020</td>
-                <td>08h-12h</td>
-                <td><a href="" class="btn btn-info">TELECHARGER</a> <a href="" class="btn btn-danger">MODIFIER</a></td>
+                <tr>
+                    <td>Gestion des utilisateurs</td>
+                    <td>{{ $utilisateur }}</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>❌</td>
+
+                </tr>
+                <tr>
+                    <td>Gestion des Occupations</td>
+                    <td>{{ $salle }}</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>❌</td>
+
+
+                </tr>
+                <tr>
+                    <td>Gestion des Filières</td>
+                    <td>{{ $filiere }}</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>❌</td>
+
+
+                </tr>
+                <tr>
+                    <td>Gestion des Paiements</td>
+                    <td>{{ $paiement }}</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>❌</td>
+
+                </tr>
+                <tr>
+                    <td>Gestion des Emplois du  Temps</td>
+                    <td>{{ $emploi }}</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>❌</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
+        <div>
+        <a href="" class="btn btn-danger">TELECARGER</a> <a href="/tableau" class="btn btn-dark">DASHBOARD</a>
+
+        </div>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -68,7 +106,6 @@
         margin-left: 10px;
         position: fixed;
 
-
     }
     .table td{
         background-color: blanchedalmond;
@@ -78,7 +115,7 @@
 
     .A h1{
         margin-bottom: 20px;
-        margin-left: 500px;
+        margin-left: 400px;
         font-family:  Times, serif;
         font-weight: bold;
         font-size: 20px;
@@ -104,8 +141,15 @@
         margin-left: 60px;
         margin-bottom: 0px;
         height: 40px;
-
     }
+
+    .btn{
+        margin-left: 10px;
+        margin-top: 350px;
+        font-family:  Times, serif;
+        font-size: 20px;
+    }
+
 
     </style>
 </html>

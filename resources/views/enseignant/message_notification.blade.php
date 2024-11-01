@@ -13,7 +13,7 @@
         <p>Salut , professeur <strong>{{ $name }}  {{ $prenoms }}</strong> votre mot de passe pour l'accès à la plateforme de gestion de l'université pour vos informations est <strong>{{  $mot_passe  }}</strong></p>
         <p>Veuillez garder le mot de passe de manière confidentiel.</p>
         <p>Vous pouvez nous contacter au <strong>(+225 01 72 42 60 87 )</strong> pour toutes préoccupastions. </p>
-        <p><strong>NB:</strong>Une mauvaise attitide ou en cas d'indiscipline , vous n'aurez plus d'accès à la plateforme</p>
+        <p><strong>NB:</strong>Une mauvaise attitude ou en cas d'indiscipline , vous n'aurez plus d'accès à la plateforme</p>
         <p>L'administration vous remercie .</p>
     </div>
 

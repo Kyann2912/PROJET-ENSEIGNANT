@@ -12,15 +12,20 @@
     <div class="Tout">
         <div class="A">
             <h1>DAHSBOARD</h1> <br>
-            <hr>
+
+            <img src="font/Image.jpg" alt="" width="60px"> <p class="nom" >{{ $nom }} {{ $prenoms }}</p>
 
 
+            <br>
+            <br>
+            <br>
             <a href="/inscription">GESTION DES UTILISATEURS</a> <br>
             <a href="/occupation">GESTION DES OCCCUPATIONS</a> <br>
             <a href="/paiement">GESTION DES PAIEMENTS</a> <br>
             <a href="/filiere">GESTION DES FILIERES</a> <br>
             <a href="/emploi-temps">GESTION DES EMPLOI DU TEMPS</a> <br>
-            <br>
+            <a href="/audit">AUDIT</a> <br>
+
             <br>
             <div class="logout">
                 <a href="/deconnexion/utilisateur">DECONNEXION</a>
@@ -32,7 +37,7 @@
 
         <div class="F">
             <div>
-                <p>UTILISATEURS  <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">{{$utilisateur}}</h1></p>
+                <p>UTILISATEURS  <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">{{ $utilisateur }}</h1></p>
                 <br>
                 <p class="XC" >PAIEMENTS <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">{{$paiement}}</h1></p>
             </div>
@@ -188,13 +193,24 @@
     .stat {
         margin-left: 350px; 
         padding-left: 280px;
-        /* border:2px double; */
-        /* border-radius:2px; */
-        /* border-color:aliceblue; */
         margin-top: 200px;
         position: fixed;
         padding-bottom: 20px;
         box-shadow: 24cm;
+    }
+
+    img{
+        margin-left:5px;
+        position: fixed;
+
+    }
+    .nom{
+        position: fixed;
+        margin-left:80px;
+        font-family:  Times, serif;
+        font-size: 20px;
+        margin-top:15px;
+        font-weight: bold;
     }
 
 

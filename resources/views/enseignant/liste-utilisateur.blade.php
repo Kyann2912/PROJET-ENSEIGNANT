@@ -82,6 +82,7 @@
     .table{
         color: white;
         margin-left: 10px;
+        position: fixed;
 
     }
     .table td{

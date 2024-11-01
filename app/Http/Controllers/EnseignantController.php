@@ -31,6 +31,8 @@ class EnseignantController extends Controller
 
 
 
+
+
     public function D(){
         return view('enseignant.inscription');
     }
@@ -84,7 +86,10 @@ class EnseignantController extends Controller
     }
 
     public function M(){
-        return view('enseignant.professeur');
+        $user = Auth::user();
+        $nom = $user->name;
+        $prenoms = $user->prenoms;
+        return view('enseignant.professeur',compact('nom','prenoms'));
     }
 
     public function N(){
@@ -173,7 +178,12 @@ class EnseignantController extends Controller
             'labels'=> ['filiere','utilisateur','paiement','emploi','salle'],
             'values'=> [$filiere,$utilisateur,$paiement,$emploi,$salle]
         ];
-        return view('enseignant.tableau', compact('data','filiere','utilisateur','paiement','emploi','salle'));
+
+        $user = Auth::user();
+        $nom = $user->name;
+        $prenoms = $user->prenoms;
+
+        return view('enseignant.tableau', compact('data','filiere','utilisateur','paiement','emploi','salle','nom','prenoms'));
     }
 
 
@@ -295,9 +305,9 @@ class EnseignantController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
+            $noms = $user->name;
             if ($user->role === 'admin') {
-                return redirect('/tableau');
+                return redirect('/tableau')->with(compact('noms'));
             } elseif ($user->role === 'professeur') {
                 return redirect('/professeur');
             }
@@ -318,6 +328,21 @@ class EnseignantController extends Controller
         $user = User :: find($id);
         $user->delete();
         return redirect('/liste-utilisateurs');
+    }
+
+
+    public function detail_utilisateur(){
+        return view('enseignant.detail-utilisateur');
+    }
+
+
+    public function audit(){
+        $filiere = session('filiere');
+        $utilisateur = session('utilisateur');
+        $paiement = session('paiement');
+        $emploi = session('emploi');
+        $salle = session('salle');
+        return view('enseignant.audit',compact('filiere','utilisateur','paiement','emploi','salle'));
     }
 
     

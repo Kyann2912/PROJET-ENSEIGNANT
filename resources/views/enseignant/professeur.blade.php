@@ -12,8 +12,7 @@
     <div class="Tout">
         <div class="A">
             <h1>DAHSBOARD</h1> <br>
-            <hr>
-
+            <img src="font/Image.jpg" alt="" width="60px"> <p class="nom" >{{ $nom }} {{ $prenoms }}</p> <br>
 
             <a href="/professeur-emploi">EMPLOI DU TEMPS</a> <br>
             <br>
@@ -105,6 +104,15 @@
         color: white;
         width: 200px;
         border-radius: 5px;
+    }
+
+    .nom{
+        position: fixed;
+        margin-left:80px;
+        font-family:  Times, serif;
+        font-size: 20px;
+        margin-top:-45px;
+        font-weight: bold;
     }
 
     </style>
