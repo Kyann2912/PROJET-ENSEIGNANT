@@ -11,33 +11,51 @@
     <div class="Tout">
         <div class="B">
             <h1 style="margin-top: 200px;font-weight: bold;">Hello Friend</h1> <br>
-            <p>Entrez vos coordonnées personnelles et commencez <br>
+            <p>Entrez  un nouveau mot de passe  et commencez <br>
                 votre voyage avec nous.</p>
             <!-- <a href="/inscription.html"> S'inscrire</a> -->
 
         </div>
     
         <div class="A">
-            <h1>Se connecter</h1> <br>
+            <h1>Nouveau Mot de Passe</h1> <br>
             @if(session('message'))
             <div class="alert alert-success" role="alert" style="margin:20px;">
                 {{ session('message') }}
             </div>
             @endif
-            <form action="/ajouter/utilisateur" method="post">
+            @if(session('yann'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('yann') }}
+            </div>
+            @endif
+            @if(session('franck'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('franck') }}
+            </div>
+            @endif
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<!-- Votre formulaire ici -->
+
+            <form action="/new/password" method="post">
                 @csrf
                 <label for="">Email</label> <br>
-                 <input type="text" class="form-control"  name="email" id=""><br>
-                <label for="">Rôle</label> <br>
-                <select class="form-select" name="role" id="">
-                    <option value="admin">Admin</option>
-                    <option value="professeur">Professeur</option>
-                </select> <br>
+                <input type="text" class="form-control"  name="email" id=""><br>
                 <label for="">Password</label> <br>
                 <input type="password" class="form-control"  name="password" id=""><br>
-                <a href="/mot/passe">Mot de Passe Oublié  ?</a> <br>
+                <label for="confirmed">Confirmation Password</label> <br>
+                <input type="password" class="form-control"  name="confirmed" id=""><br>
                 <br>
-                <input type="submit" value="Connexion" class="X">
+                <input type="submit" value="Enregistrer" class="X">
             </form>
 
         </div>
@@ -110,7 +128,7 @@
     }
     .A h1{
         margin-bottom: 20px;
-        margin-left: 170px;
+        margin-left: 80px;
         font-family:  Times, serif;
         font-weight: bold;
 

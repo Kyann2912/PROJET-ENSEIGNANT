@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Professeur;  
 use Illuminate\Support\Facades\Mail; //Pour le mail
 use App\Mail\MessageNotification;    //Pour le mail
+use App\Mail\Email;    //Pour le mail
+
 
 
 use App\Models\Administrateur;  
@@ -26,6 +28,61 @@ class EnseignantController extends Controller
     }
     public function B(){
         return view('enseignant.listeemploitemps');
+
+    }
+
+    public function mot_passe(){
+        return view('enseignant.mot-passe');
+    }
+
+
+    public function new_mot_passe(){
+        return view('enseignant.nouveau-passe');
+    }
+
+    public function verifier_passe(Request $request){
+        $request->validate([
+            'email'=>'required'
+        ]);
+
+        $verifier = User :: where('email',$request->email)->exists();
+        Mail :: to($request->email)->send(new Email);
+        if($verifier){
+            return redirect('/mot/passe/nouveau');
+        }else{
+            return redirect('/mot/passe')->with('message','Email Inconnue en base de données');
+        }
+    }
+
+    public function nouveau(Request $request){
+        $request->validate([
+            'email'=>'required',
+            'password'=>'required',
+            'confirmed'=>'required'
+        ]);
+
+        $verifier = User :: where('email',$request->email)->exists();
+        $user = User::where('email', $request->email)->first();
+
+
+        if ($request->password !== $request->confirmed ){
+            return redirect('/mot/passe/nouveau')->with('message','Mot de Passe  est différent de la confirmation');
+        }
+        if($verifier){
+            if($user){
+                $user->password = Hash::make($request->password);
+                $user->save();
+                return  redirect ('/connexion');
+            }
+            else{
+                return redirect('/mot/passe/nouveau')->with('yann','Email inconnue');
+            }
+
+        }else{
+            return redirect('/mot/passe/nouveau')->with('franck','Utilisateur inconnue');
+
+
+        }
 
     }
 

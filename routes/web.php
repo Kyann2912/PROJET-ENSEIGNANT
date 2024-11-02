@@ -127,6 +127,23 @@ Route::get('/audit',[EnseignantController::class,'audit']);
 
 
 
+Route::get('/mot/passe',[EnseignantController::class,'mot_passe']);
+
+
+Route::get('/mot/passe/nouveau',[EnseignantController::class,'new_mot_passe']);
+
+
+
+
+
+Route::post('/ajouter/password',[EnseignantController::class,'verifier_passe']);
+
+
+
+Route::post('/new/password',[EnseignantController::class,'nouveau']);
+
+
+
 
 
 

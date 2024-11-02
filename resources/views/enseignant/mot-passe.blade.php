@@ -10,34 +10,26 @@
   <body>
     <div class="Tout">
         <div class="B">
-            <h1 style="margin-top: 200px;font-weight: bold;">Hello Friend</h1> <br>
-            <p>Entrez vos coordonnées personnelles et commencez <br>
-                votre voyage avec nous.</p>
+            <h1 style="margin-top: 200px;font-weight: bold;">Mot de Passe oublié ?</h1> <br>
+            <p>Paniquer pas ! Entrer votre email pour un nouveau mot<br>
+                de passe.</p>
             <!-- <a href="/inscription.html"> S'inscrire</a> -->
 
         </div>
     
         <div class="A">
-            <h1>Se connecter</h1> <br>
+            <h1>Récuperation</h1> <br>
             @if(session('message'))
             <div class="alert alert-success" role="alert" style="margin:20px;">
                 {{ session('message') }}
             </div>
             @endif
-            <form action="/ajouter/utilisateur" method="post">
+            <form action="/ajouter/password" method="post">
                 @csrf
                 <label for="">Email</label> <br>
                  <input type="text" class="form-control"  name="email" id=""><br>
-                <label for="">Rôle</label> <br>
-                <select class="form-select" name="role" id="">
-                    <option value="admin">Admin</option>
-                    <option value="professeur">Professeur</option>
-                </select> <br>
-                <label for="">Password</label> <br>
-                <input type="password" class="form-control"  name="password" id=""><br>
-                <a href="/mot/passe">Mot de Passe Oublié  ?</a> <br>
                 <br>
-                <input type="submit" value="Connexion" class="X">
+                <input type="submit" value="Envoyer" class="X">
             </form>
 
         </div>
@@ -110,7 +102,7 @@
     }
     .A h1{
         margin-bottom: 20px;
-        margin-left: 170px;
+        margin-left: 120px;
         font-family:  Times, serif;
         font-weight: bold;
 

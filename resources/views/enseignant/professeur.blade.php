@@ -114,6 +114,10 @@
         margin-top:-45px;
         font-weight: bold;
     }
+    img{
+        border-radius:15px;
+
+    }
 
     </style>
 </html>

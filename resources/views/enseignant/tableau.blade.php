@@ -202,6 +202,7 @@
     img{
         margin-left:5px;
         position: fixed;
+        border-radius:15px;
 
     }
     .nom{
