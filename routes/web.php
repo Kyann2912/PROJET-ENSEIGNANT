@@ -30,7 +30,7 @@ Route::get('/tableau',[EnseignantController::class,'C'])->middleware('auth');
 
 Route::get('/inscription',[EnseignantController::class,'D'])->middleware('auth');
 
-Route::get('/liste-utilisateurs',[EnseignantController::class,'E'])->middleware('auth');
+Route::get('/liste-utilisateurs',[EnseignantController::class,'E']);
 
 Route::get('/occupation',[EnseignantController::class,'F'])->middleware('auth');
 
