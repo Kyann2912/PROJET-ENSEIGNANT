@@ -40,13 +40,20 @@ class EnseignantController extends Controller
         return view('enseignant.nouveau-passe');
     }
 
+
+
+
+
     public function verifier_passe(Request $request){
         $request->validate([
             'email'=>'required'
         ]);
 
         $verifier = User :: where('email',$request->email)->exists();
-        Mail :: to($request->email)->send(new Email);
+        $code_verification = Str::random(8);
+        Mail :: to($request->email)->send(new Email($code_verification));
+            // Stocker le code dans la session
+        $request->session()->put('code_verification', $code_verification);
         if($verifier){
             return redirect('/mot/passe/nouveau');
         }else{
@@ -56,6 +63,7 @@ class EnseignantController extends Controller
 
     public function nouveau(Request $request){
         $request->validate([
+            'code'=>'required',
             'email'=>'required',
             'password'=>'required',
             'confirmed'=>'required'
@@ -64,6 +72,14 @@ class EnseignantController extends Controller
         $verifier = User :: where('email',$request->email)->exists();
         $user = User::where('email', $request->email)->first();
 
+
+        //recupérer la session
+        $code_verification = $request->session()->get('code_verification');
+
+
+        if($code_verification !== $request->code){
+            return redirect('/mot/passe/nouveau')->with('valider','Code de verification incorrect.');
+        }
 
         if ($request->password !== $request->confirmed ){
             return redirect('/mot/passe/nouveau')->with('message','Mot de Passe  est différent de la confirmation');

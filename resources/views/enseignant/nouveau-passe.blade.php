@@ -34,20 +34,15 @@
                 {{ session('franck') }}
             </div>
             @endif
-            @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-<!-- Votre formulaire ici -->
-
+            @if(session('valider'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('valider') }}
+            </div>
+            @endif
             <form action="/new/password" method="post">
                 @csrf
+                <label for="">Code Verification</label> <br>
+                <input type="text" class="form-control"  name="code" id=""><br>
                 <label for="">Email</label> <br>
                 <input type="text" class="form-control"  name="email" id=""><br>
                 <label for="">Password</label> <br>

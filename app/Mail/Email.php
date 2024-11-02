@@ -13,44 +13,22 @@ class Email extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
+    public $code_verification;
+
+
+
+    public function __construct($code_verification){
+        $this->code_verification = $code_verification;
+
     }
 
-    /**
-     * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
-     */
-    public function envelope()
-    {
-        return new Envelope(
-            subject: 'Email',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
 
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
-
-     public function build(){
+    public function build(){
         return $this->view('enseignant.password')->subject("Mot de Passe ");
-     }
+    
+    }
+
 
 }
 

@@ -11,6 +11,7 @@
   <div class="container mt-4">
         <h1 class="text-center">Mot de Passe</h1>
         <p>Tentative de modification de  votre mot de passe .</p>
+        <p>Le code de verification est <strong>{{ $code_verification }}</strong> </p>
         <p>Si vous n'êtes à l'origine de cette action veuiller signaler l'administration.</p>
         <p>La sécurité de vos informations est la priorité de notre appliation</p>
         <p>Vous pouvez nous contacter au <strong>(+225 01 72 42 60 87 )</strong>  ou par mail : <strong> kouakouyann782@gmail.com </strong>pour toutes préoccupastions. </p>
