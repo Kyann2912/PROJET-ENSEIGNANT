@@ -50,7 +50,7 @@ class EnseignantController extends Controller
         ]);
 
         $verifier = User :: where('email',$request->email)->exists();
-        $code_verification = Str::random(8);
+        $code_verification = Str::random(3);
         Mail :: to($request->email)->send(new Email($code_verification));
             // Stocker le code dans la session
         $request->session()->put('code_verification', $code_verification);
@@ -95,7 +95,7 @@ class EnseignantController extends Controller
             }
 
         }else{
-            return redirect('/mot/passe/nouveau')->with('franck','Utilisateur inconnue');
+            return redirect('/mot/passe/nouveau')->with('franck',"Veuillez revoir votre email");
 
 
         }

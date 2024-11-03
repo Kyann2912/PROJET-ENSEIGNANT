@@ -14,11 +14,11 @@
             <p>Entrez  un nouveau mot de passe  et commencez <br>
                 votre voyage avec nous.</p>
             <!-- <a href="/inscription.html"> S'inscrire</a> -->
-
-        </div>
-    
-        <div class="A">
-            <h1>Nouveau Mot de Passe</h1> <br>
+            @if(session('valider'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('valider') }}
+            </div>
+            @endif
             @if(session('message'))
             <div class="alert alert-success" role="alert" style="margin:20px;">
                 {{ session('message') }}
@@ -34,11 +34,11 @@
                 {{ session('franck') }}
             </div>
             @endif
-            @if(session('valider'))
-            <div class="alert alert-success" role="alert" style="margin:20px;">
-                {{ session('valider') }}
-            </div>
-            @endif
+
+        </div>
+    
+        <div class="A">
+            <h1>Nouveau Mot de Passe</h1> <br>
             <form action="/new/password" method="post">
                 @csrf
                 <label for="">Code Verification</label> <br>
