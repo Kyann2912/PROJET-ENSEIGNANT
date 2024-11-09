@@ -128,7 +128,8 @@ class EnseignantController extends Controller
     }
     
     public function I(){
-        return view('enseignant.liste-paiement');
+        $paiements = Paiement :: all();
+        return view('enseignant.liste-paiement',compact('paiements'));
     }
 
     public function J(){
@@ -182,7 +183,7 @@ class EnseignantController extends Controller
             'nom_salle' =>'required',
             'occupation' =>'required',
             'heure' =>'required|string',
-            'date' =>'required'
+            'date_occupation' =>'required'
 
         ]);
 
@@ -191,7 +192,7 @@ class EnseignantController extends Controller
         $occupation->nom_salle = $request->nom_salle;
         $occupation->occupation = $request->occupation;
         $occupation->heure = $request->heure;
-        $occupation->date = $request->date;
+        $occupation->date_occupation = $request->date_occupation;
 
         $occupation->save();
 
@@ -202,21 +203,28 @@ class EnseignantController extends Controller
 
     }
 
-    public function ajout_paiement(){
-        $request->valiadte([
+    public function ajout_paiement(Request $request){
+        $request->validate([
             'email'=>'required',
-            'filiere-niveau'=>'required',
+            'filiere_niveau'=>'required',
             'cours'=>'required',
-            'nbre-heures'=>'required',
+            'nbre_heures'=>'required',
             'montant'=>'required',
         ]);
 
         $paiement = new Paiement();
-        $paiement->email = $request->$paiement;
-        $paiement->filiere_niveau = $request->$paiement;
-        $paiement->email = $request->$paiement;
-        $paiement->email = $request->$paiement;
-        $paiement->email = $request->$paiement;
+        $paiement->email = $request->email;
+        $paiement->filiere_niveau = $request->filiere_niveau;
+        $paiement->cours = $request->cours;
+        $paiement->nbre_heures = $request->nbre_heures;
+        $paiement->montant = $request->montant;
+        $paiement->save();
+
+        $currentFiliereCount = session('paiement', 0);
+        session(['paiement' => $currentFiliereCount + 1]);
+
+        return redirect('/liste-paiements')->with('message','Paiement ajouter avec succès')->withInput([]);
+
 
     }
 
@@ -400,6 +408,11 @@ class EnseignantController extends Controller
     public function supprimer_utilisateur($id){
         $user = User :: find($id);
         $user->delete();
+        
+        $currentFiliereCount = session('uti_supprimer', 0);
+        session(['uti_supprimer' => $currentFiliereCount + 1]);
+
+
         return redirect('/liste-utilisateurs');
     }
 
@@ -410,13 +423,19 @@ class EnseignantController extends Controller
 
 
     public function audit(){
+        $uti_supprimer = session('uti_supprimer', 0);
         $filiere = session('filiere');
         $utilisateur = session('utilisateur');
         $paiement = session('paiement');
         $emploi = session('emploi');
         $salle = session('salle');
-        return view('enseignant.audit',compact('filiere','utilisateur','paiement','emploi','salle'));
+        return view('enseignant.audit',compact('filiere','utilisateur','paiement','emploi','salle','uti_supprimer'));
     }
+
+
+    // public function ajout_paiement(){
+
+    // }
 
     
 

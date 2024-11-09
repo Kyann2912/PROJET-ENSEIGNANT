@@ -18,10 +18,8 @@ return new class extends Migration
             $table->String('email');
             $table->String('filiere_niveau');
             $table->String('cours');
-            $table->String('nbre-heures');
+            $table->String('nbre_heures');
             $table->decimal('montant');
-            $table->unsignedBigInteger('id_professeur');  // attribut pour la clé etrangère
-            $table->foreign('id_professeur')->references('id')->on('professeurs')->onDelete('cascade');
             $table->timestamps();
         });
     }

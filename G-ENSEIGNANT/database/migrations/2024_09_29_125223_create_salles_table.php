@@ -18,7 +18,7 @@ return new class extends Migration
             $table->String('nom_salle');
             $table->String('occupation');
             $table->String('heure');
-            $table->date('date');
+            $table->date('date_occupation');
             $table->timestamps();
         });
     }

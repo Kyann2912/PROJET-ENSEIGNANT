@@ -31,7 +31,7 @@
                     <td>Gestion des utilisateurs</td>
                     <td>{{ $utilisateur }}</td>
                     <td>2</td>
-                    <td>2</td>
+                    <td>{{ $uti_supprimer}}</td>
                     <td>❌</td>
 
                 </tr>

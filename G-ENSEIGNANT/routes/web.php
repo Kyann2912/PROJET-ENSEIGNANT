@@ -28,7 +28,7 @@ Route::get('/liste-emplois',[EnseignantController::class,'B'])->middleware('auth
 
 Route::get('/tableau',[EnseignantController::class,'C'])->middleware('auth');
 
-Route::get('/inscription',[EnseignantController::class,'D'])->middleware('auth');
+Route::get('/inscription',[EnseignantController::class,'D']);
 
 Route::get('/liste-utilisateurs',[EnseignantController::class,'E']);
 
@@ -146,6 +146,4 @@ Route::post('/new/password',[EnseignantController::class,'nouveau']);
 
 
 
-
-
-
+Route::post('/paiement/store', [EnseignantController::class, 'ajout_paiement']);

@@ -24,23 +24,38 @@
         </div>
         <br>
         <table class="table">
-            <thead>
+        @if(session('message'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('message') }}
+            </div>
+        @endif
+            <thead>                
                 <tr>
-                    <th>Id</th>
+                    <th>Numéro</th>
                     <th>Email-Professeur</th>
                     <th>Filière-Niveau</th>
+                    <th>Cours</th>
                     <th>Nbre-Heures</th>
                     <th>Montant</th>
                     <th>Actions</th>
                 </tr>
             </thead>
+            @php
+                $yann = 1;
+            @endphp
             <tbody>
-                <td>1</td>
-                <td>Alpha</td>
-                <td>IGL-L3</td>
-                <td>10/10/2020</td>
-                <td>08h-12h</td>
-                <td><a href="" class="btn btn-info">IMPRIMER</a> <a href="" class="btn btn-danger">MODIFIER</a></td>
+                @foreach ($paiements as $paiement)
+                 <td>1</td>
+                 <td>{{ $paiement->email }}</td>
+                 <td>{{ $paiement->filiere_niveau }}</td>
+                 <td>{{ $paiement->cours }}</td>
+                 <td>{{ $paiement->nbre_heures }}</td>
+                 <td>{{ $paiement->montant }}</td>
+                 <td><a href="" class="btn btn-info">IMPRIMER</a> <a href="" class="btn btn-danger">MODIFIER</a></td>
+                 @php
+                    $yann++;
+                 @endphp
+                @endforeach
             </tbody>
         </table>
 

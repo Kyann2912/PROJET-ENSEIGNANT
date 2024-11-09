@@ -42,7 +42,7 @@
 
                 </select> <br>
                 <label for="">Date</label> <br>
-                <input type="date" class="form-control"  name="date" id=""><br>
+                <input type="date" class="form-control"  name="date_occupation" id=""><br>
                 <br>
                 <input type="submit" value="Ajouter" class="X">
             </form>

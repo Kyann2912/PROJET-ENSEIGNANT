@@ -12,11 +12,12 @@
     <div class="Tout">
         <div class="A">
             <h1>Ajouter un Paiement </h1> <br>
-            <form action="" method="post">
+            <form action="/paiement/store" method="post">
+                @csrf
                 <label for="">Email-Professeur</label> <br>
                 <input type="text" class="form-control"  name="email" id=""><br>
                 <label for="">Filière-Niveau</label> <br>
-                <select  class="form-select" name="filiere-niveau" id="">
+                <select  class="form-select" name="filiere_niveau" id="">
                     <option value="IGL-L1">IGL-L1</option>
                     <option value="IGL-L2">IGL-L2</option>
                     <option value="IGL-L3">IGL-L3</option>
@@ -33,7 +34,7 @@
                 <label for="">Cours</label> <br>
                 <input type="text" class="form-control"  name="cours" id=""><br>
                 <label for="">Nbre-Heures</label> <br>
-                <input type="text" class="form-control"  name="nbre-heures" id=""><br>
+                <input type="text" class="form-control"  name="nbre_heures" id=""><br>
                 <label for="">Montant</label> <br>
                 <input type="text" class="form-control"  name="montant" id=""><br>
                 <br>
