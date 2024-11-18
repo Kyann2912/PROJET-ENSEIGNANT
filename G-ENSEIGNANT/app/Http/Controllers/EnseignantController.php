@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Barryvdh\DomPDF\Facade\Pdf;  //Pour le pdf
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 use App\Models\Filiere;  //Modèle filiere
@@ -308,7 +310,7 @@ class EnseignantController extends Controller
             'nom_salle' =>'required',
             'occupation' =>'required',
             'heure' =>'required',
-            'date' =>'required'
+            'date_occupation' =>'required'
 
         ]);
 
@@ -320,7 +322,7 @@ class EnseignantController extends Controller
         $occupation->nom_salle = $request->nom_salle;
         $occupation->occupation = $request->occupation;
         $occupation->heure = $request->heure;
-        $occupation->date = $request->date;
+        $occupation->date_occupation = $request->date_occupation;
         $occupation-> update();
         return redirect('/liste-occupations')->with('modifier', 'Occupation modifiée avec succès');
     }
@@ -433,9 +435,65 @@ class EnseignantController extends Controller
     }
 
 
-    // public function ajout_paiement(){
+    public function pdf(){
+        $uti_supprimer = session('uti_supprimer', 0);
+        $filiere = session('filiere');
+        $utilisateur = session('utilisateur');
+        $paiement = session('paiement');
+        $emploi = session('emploi');
+        $salle = session('salle');
 
-    // }
+        $date = Carbon::now()->format('d-m-Y'); 
+
+
+        $pdf = Pdf::loadView('Enseignant.rapport',compact('utilisateur','salle','filiere','paiement','emploi','uti_supprimer','date'));
+        $date = Carbon::now()->format('Y-m-d  H:i:s'); 
+        // le PDF télécharger
+        return $pdf->download('Audit'.$date.'.pdf');
+
+    }
+
+    public function supprimer_paiement($id){
+        $paiement = Paiement::find($id);
+        $paiement->delete();
+        return redirect('/liste-paiements')->with('vie','Paiement supprimer avec succès');
+    }
+
+    public function modifier_paiement($id){
+        $paiement = Paiement :: find($id);
+        return view ('enseignant.update-paiement',compact('paiement'));
+    }
+
+
+    public function upadte_paiement(Request $request){
+
+        $request->validate([
+            'email'=>'required',
+            'filiere_niveau'=>'required',
+            'cours'=>'required',
+            'nbre_heures'=>'required',
+            'montant'=>'required',
+        ]);
+
+        $paiement =  Paiement :: find($request->id);
+        $paiement->email = $request->email;
+        $paiement->filiere_niveau = $request->filiere_niveau;
+        $paiement->cours = $request->cours;
+        $paiement->nbre_heures = $request->nbre_heures;
+        $paiement->montant = $request->montant;
+        $paiement->save();
+
+        // $currentFiliereCount = session('paiement', 0);
+        // session(['paiement' => $currentFiliereCount + 1]);
+
+        return redirect('/liste-paiements')->with('update','Paiement modifier avec succès')->withInput([]);
+
+
+
+    }
+
+
+
 
     
 

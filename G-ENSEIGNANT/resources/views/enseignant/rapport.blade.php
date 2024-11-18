@@ -14,9 +14,7 @@
         font-family: 'Times New Roman', Times, serif;
       }
 
-      .yann a{
-        margin-left:80px;
-      }
+
 
       h1 {
         text-align: center;
@@ -97,50 +95,50 @@
                         <td>{{ $utilisateur }}</td>
                         <td>2</td>
                         <td>{{ $uti_supprimer }}</td>
-                        <td>❌</td>
+                        <td>Null</td>
                     </tr>
                     <tr>
                         <td>Gestion des Occupations</td>
                         <td>{{ $salle }}</td>
                         <td>2</td>
                         <td>2</td>
-                        <td>❌</td>
+                        <td>Null</td>
                     </tr>
                     <tr>
                         <td>Gestion des Filières</td>
                         <td>{{ $filiere }}</td>
                         <td>2</td>
                         <td>2</td>
-                        <td>❌</td>
+                        <td>Null</td>
                     </tr>
                     <tr>
                         <td>Gestion des Paiements</td>
                         <td>{{ $paiement }}</td>
                         <td>2</td>
                         <td>2</td>
-                        <td>❌</td>
+                        <td>Null</td>
                     </tr>
                     <tr>
                         <td>Gestion des Emplois du Temps</td>
                         <td>{{ $emploi }}</td>
                         <td>2</td>
                         <td>2</td>
-                        <td>❌</td>
+                        <td>Null</td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td>❌</td>
-                        <td>❌</td>
-                        <td>❌</td>
+                        <td>Null</td>
+                        <td>Null</td>
+                        <td>Null</td>
                         <td></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="yann"> 
-        <a href="/rapport" class="btn btn-danger" style="margin-lef:100px";>TELECHAGER LE RAPPORT</a> <a href="/tableau" class="btn btn-dark">TABLEAU DE BORD</a>
-    </div>
+
+    <p style="margin-left:50px;margin-top:550px";>Générer le <strong>{{ $date }}</strong></p>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -29,6 +29,16 @@
                 {{ session('message') }}
             </div>
         @endif
+        @if(session('vie'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('vie') }}
+            </div>
+        @endif
+        @if(session('update'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('update') }}
+            </div>
+        @endif
             <thead>                
                 <tr>
                     <th>Numéro</th>
@@ -45,13 +55,15 @@
             @endphp
             <tbody>
                 @foreach ($paiements as $paiement)
-                 <td>1</td>
+                <tr>
+                 <td>{{ $yann }}</td>
                  <td>{{ $paiement->email }}</td>
                  <td>{{ $paiement->filiere_niveau }}</td>
                  <td>{{ $paiement->cours }}</td>
                  <td>{{ $paiement->nbre_heures }}</td>
                  <td>{{ $paiement->montant }}</td>
-                 <td><a href="" class="btn btn-info">IMPRIMER</a> <a href="" class="btn btn-danger">MODIFIER</a></td>
+                  <td><a href="/modifier/paiement/{{ $paiement->id }}" class="btn btn-info">MODIFIER</a> <a href="/supprimer/paiement/{{ $paiement->id }}" class="btn btn-danger">SUPPRIMER</a></td>
+                </tr>
                  @php
                     $yann++;
                  @endphp

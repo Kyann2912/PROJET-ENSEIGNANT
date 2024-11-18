@@ -120,6 +120,12 @@ Route::get('/deconnexion/utilisateur',[EnseignantController::class,'deconnexion'
 Route::get('/supprimer/utilisateur/{id}',[EnseignantController::class,'supprimer_utilisateur']);
 
 
+Route::get('/modifier/paiement/{id}',[EnseignantController::class,'modifier_paiement']);
+
+
+
+Route::get('/supprimer/paiement/{id}',[EnseignantController::class,'supprimer_paiement']);
+
 Route::get('/detail/utilisateur',[EnseignantController::class,'detail_utilisateur']);
 
 
@@ -145,5 +151,11 @@ Route::post('/new/password',[EnseignantController::class,'nouveau']);
 
 
 
+Route::post('/paiement/update',[EnseignantController::class,'upadte_paiement']);
+
+
 
 Route::post('/paiement/store', [EnseignantController::class, 'ajout_paiement']);
+
+
+Route :: get('/rapport',[EnseignantController::class,'pdf']);

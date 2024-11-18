@@ -58,7 +58,7 @@
                   <td>{{  $yann  }}</td>
                   <td>{{  $occupation->nom_salle  }}</td>
                   <td>{{  $occupation->occupation  }}</td>
-                  <td>{{  $occupation->date  }}</td>
+                  <td>{{  $occupation->date_occupation  }}</td>
                   <td>{{  $occupation->heure  }}</td>
                   <td><a href="/modifier/occupation/{{ $occupation->id }}" class="btn btn-info">MODIFIER</a> <a href="/supprimer/occupation/{{  $occupation->id  }}" class="btn btn-danger">SUPPRIMER</a></td>
                 </tr>
