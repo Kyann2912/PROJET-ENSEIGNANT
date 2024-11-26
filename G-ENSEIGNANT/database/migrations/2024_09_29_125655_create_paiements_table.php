@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('paiements', function (Blueprint $table) {
             $table->id();
-            $table->String('email');
             $table->String('filiere_niveau');
             $table->String('cours');
             $table->String('nbre_heures');
-            $table->decimal('montant');
+            $table->decimal('montant_heure');
+            $table->decimal('montant_total');
+
+            $table->unsignedBigInteger('id_professeur');
+            $table->foreign('id_professeur')->references('id')->on('paiements')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

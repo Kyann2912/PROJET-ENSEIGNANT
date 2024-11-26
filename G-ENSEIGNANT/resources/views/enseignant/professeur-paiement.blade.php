@@ -15,7 +15,7 @@
             <h1>MES PAIEMENTS</h1>
             <hr>
             <div class="ensemble">
-                <a href="/professeur" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">DASHBOARD</a>
+                <a href="/professeur" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">DASHBOARD</a>  <a href="/impression" class="btn btn-info">IMPRIMER</a>
             </div>
 
         </div>
@@ -23,22 +23,35 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Email-Professeur</th>
+                    <th>Numéro</th>
                     <th>Filière-Niveau</th>
+                    <th>Cours</th>
                     <th>Nbre-Heures</th>
-                    <th>Montant</th>
-                    <th>Actions</th>
+                    <th>Montant/Heures</th>
+                    <th>Montant Total</th>
+
+                    <!-- <th>Actions</th> -->
                 </tr>
             </thead>
+            @php
+                $yann = 1;
+            @endphp
             <tbody>
-                <td>1</td>
-                <td>Alpha</td>
-                <td>IGL-L3</td>
-                <td>10/10/2020</td>
-                <td>08h-12h</td>
-                <td><a href="" class="btn btn-info">IMPRIMER LE RECU</a></td>
-            </tbody>
+                    @foreach($paiements as $paiement)
+                        <tr>
+                            <td>{{ $yann  }}</td>
+                            <td>{{ $paiement->filiere_niveau }}</td>
+                            <td>{{ $paiement->cours }}</td>
+                            <td>{{ $paiement->nbre_heures }}</td>
+                            <td>{{ $paiement->montant_heure }}</td>
+                            <td>{{ $paiement->montant_total }}</td>
+
+                        </tr>
+                    @php
+                        $yann++;
+                    @endphp
+                    @endforeach
+                </tbody>
         </table>
 
     </div>
@@ -50,6 +63,7 @@
         padding: 0px;
         background-color: blanchedalmond;
         font-family:  Times, serif;
+        /* position:fixed; */
 
 
     }
@@ -63,6 +77,8 @@
     .table{
         color: white;
         margin-left: 10px;
+        position: fixed;
+
 
     }
     .table td{

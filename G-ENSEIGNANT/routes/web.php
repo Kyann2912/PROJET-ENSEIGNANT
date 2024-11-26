@@ -22,11 +22,11 @@ Route::get('/', function () {
 });
 
 
-Route::get('/emploi-temps', [EnseignantController::class,'A'])->middleware('auth');
+Route::get('/emploi-temps', [EnseignantController::class,'A']);
 
 Route::get('/liste-emplois',[EnseignantController::class,'B'])->middleware('auth');
 
-Route::get('/tableau',[EnseignantController::class,'C'])->middleware('auth');
+Route::get('/tableau',[EnseignantController::class,'C']);
 
 Route::get('/inscription',[EnseignantController::class,'D']);
 
@@ -36,7 +36,7 @@ Route::get('/occupation',[EnseignantController::class,'F'])->middleware('auth');
 
 Route::get('/liste-occupations',[EnseignantController::class,'G'])->middleware('auth');
 
-Route::get('/paiement',[EnseignantController::class,'H'])->middleware('auth');
+Route::get('/paiement',[EnseignantController::class,'H']);
 
 Route::get('/liste-paiements',[EnseignantController::class,'I'])->middleware('auth');
 

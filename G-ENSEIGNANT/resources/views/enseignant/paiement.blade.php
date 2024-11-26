@@ -14,8 +14,8 @@
             <h1>Ajouter un Paiement </h1> <br>
             <form action="/paiement/store" method="post">
                 @csrf
-                <label for="">Email-Professeur</label> <br>
-                <input type="text" class="form-control"  name="email" id=""><br>
+                <label for="">Id-Professeur</label> <br>
+                <input type="text" class="form-control"  name="id_professeur" id=""><br>
                 <label for="">Filière-Niveau</label> <br>
                 <select  class="form-select" name="filiere_niveau" id="">
                     <option value="IGL-L1">IGL-L1</option>
@@ -35,8 +35,8 @@
                 <input type="text" class="form-control"  name="cours" id=""><br>
                 <label for="">Nbre-Heures</label> <br>
                 <input type="text" class="form-control"  name="nbre_heures" id=""><br>
-                <label for="">Montant</label> <br>
-                <input type="text" class="form-control"  name="montant" id=""><br>
+                <label for="">Montant-Heure</label> <br>
+                <input type="text" class="form-control"  name="montant_heure" id="" value=10000><br>
                 <br>
                 <input type="submit" value="Ajouter" class="X">
             </form>

@@ -173,7 +173,14 @@ class EnseignantController extends Controller
     }
 
     public function O(){
-        return view('enseignant.professeur-paiement');
+        $user = Auth::user();
+        $nom = $user->name;
+        $prenoms = $user->prenoms;
+    
+        // Récupérer les paiements du professeur connecté
+        $paiements = Paiement::where('id', $user->id)->get();
+    
+        return view('enseignant.professeur-paiement', compact('paiements'));
     }
 
     public function P(){
@@ -207,19 +214,23 @@ class EnseignantController extends Controller
 
     public function ajout_paiement(Request $request){
         $request->validate([
-            'email'=>'required',
+            'id_professeur'=>'required',
             'filiere_niveau'=>'required',
             'cours'=>'required',
             'nbre_heures'=>'required',
-            'montant'=>'required',
+            'montant_heure'=>'required',
         ]);
 
+        $total = $request->montant_heure * $request->nbre_heures;
+
         $paiement = new Paiement();
-        $paiement->email = $request->email;
         $paiement->filiere_niveau = $request->filiere_niveau;
         $paiement->cours = $request->cours;
         $paiement->nbre_heures = $request->nbre_heures;
-        $paiement->montant = $request->montant;
+        $paiement->montant_heure = $request->montant_heure;
+        $paiement->montant_total = $total;
+        $paiement->id_professeur = $request->id_professeur;
+
         $paiement->save();
 
         $currentFiliereCount = session('paiement', 0);
@@ -344,6 +355,8 @@ class EnseignantController extends Controller
             $user->email = $request->email;
             $user->role = $request->role;
 
+
+            //Les coordonnées pour envoyer le mail
             $mot_passe = Str::random(8);
             $email = $request->email;
             $name = $request->name;
@@ -368,15 +381,16 @@ class EnseignantController extends Controller
             $professeur->id_user = $user->id;
             $professeur->matiere= $request->matiere;
             $professeur->save();
+            Mail::to($email)->send(new MessageNotification($name,$prenoms,$mot_passe));
+
         }
 
         // Envoyer l'email
-        Mail::to($email)->send(new MessageNotification($name,$prenoms,$mot_passe));
 
         $currentFiliereCount = session('utilisateur', 0);
         session(['utilisateur' => $currentFiliereCount + 1]);
 
-        return redirect('/connexion');
+        return redirect('/tableau');
     
     }
 

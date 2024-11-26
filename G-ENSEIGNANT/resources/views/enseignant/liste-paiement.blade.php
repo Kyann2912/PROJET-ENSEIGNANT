@@ -42,11 +42,13 @@
             <thead>                
                 <tr>
                     <th>Numéro</th>
-                    <th>Email-Professeur</th>
+                    <th>Id-Professeur</th>
                     <th>Filière-Niveau</th>
                     <th>Cours</th>
                     <th>Nbre-Heures</th>
-                    <th>Montant</th>
+                    <th>Montant/Heures</th>
+                    <th>Montant-Total</th>
+
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -57,11 +59,14 @@
                 @foreach ($paiements as $paiement)
                 <tr>
                  <td>{{ $yann }}</td>
-                 <td>{{ $paiement->email }}</td>
+                 <td>{{ $paiement->id_professeur }}</td>
                  <td>{{ $paiement->filiere_niveau }}</td>
                  <td>{{ $paiement->cours }}</td>
                  <td>{{ $paiement->nbre_heures }}</td>
-                 <td>{{ $paiement->montant }}</td>
+                 <td>{{ 10000 }}</td>
+                 <td>{{ $paiement->montant_total }}</td>
+
+                 
                   <td><a href="/modifier/paiement/{{ $paiement->id }}" class="btn btn-info">MODIFIER</a> <a href="/supprimer/paiement/{{ $paiement->id }}" class="btn btn-danger">SUPPRIMER</a></td>
                 </tr>
                  @php
