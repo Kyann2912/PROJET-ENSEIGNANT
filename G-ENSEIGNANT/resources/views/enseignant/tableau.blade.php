@@ -19,12 +19,12 @@
             <br>
             <br>
             <br>
-            <a href="/inscription">GESTION DES UTILISATEURS</a> <br>
-            <a href="/occupation">GESTION DES OCCCUPATIONS</a> <br>
-            <a href="/paiement">GESTION DES PAIEMENTS</a> <br>
-            <a href="/filiere">GESTION DES FILIERES</a> <br>
-            <a href="/emploi-temps">GESTION DES EMPLOI DU TEMPS</a> <br>
-            <a href="/audit">AUDIT</a> <br>
+            <a href="/liste-utilisateurs">GESTION DES UTILISATEURS</a> <br>
+            <a href="/liste-occupations">GESTION DES OCCCUPATIONS</a> <br>
+            <a href="/liste-paiements">GESTION DES PAIEMENTS</a> <br>
+            <a href="/liste-filieres">GESTION DES FILIERES</a> <br>
+            <a href="/liste-emplois">GESTION DES EMPLOI DU TEMPS</a> <br>
+            <a href="/audit">AUDIT DES OPERATIONS</a> <br>
 
             <br>
             <div class="logout">
