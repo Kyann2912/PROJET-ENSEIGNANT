@@ -72,6 +72,7 @@
   <body>
 
     <!-- Contenu principal -->
+
     <div class="container">
         <header class="A">
             <h1 style="color:blue";>AUDIT DES ACTIVITES SUR LA PLATEFORME</h1>

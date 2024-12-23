@@ -7,61 +7,63 @@
     
     <!-- Styles CSS -->
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        /* background-color: blanchedalmond; */
-        font-family: 'Times New Roman', Times, serif;
-      }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px; /* Réduction de la taille de police */
+  }
 
+  h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px; /* Réduction de la marge */
+    font-size: 20px; /* Taille plus petite */
+  }
 
+  hr {
+    width: 80%;
+    margin: 5px auto; /* Réduction des marges */
+    border: 1px solid #000;
+  }
 
-      h1 {
-        text-align: center;
-        font-weight: bold;
-        margin-top: 40px;
-        font-size: 24px;
-      }
+  .table-container {
+    margin: 10px auto; /* Réduction des marges */
+    width: 95%; /* Réduction de la largeur */
+    overflow-x: auto;
+  }
 
-      hr {
-        width: 80%;
-        margin: 0 auto;
-        border: 1px solid #000;
-      }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px; /* Taille de police pour le tableau */
+    background-color: white;
+  }
 
-      .table-container {
-        margin: 20px auto;
-        width: 90%;
-        overflow-x: auto;
-      }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 6px; /* Réduction du padding */
+    text-align: left;
+  }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
+  th {
+    background-color: #f2f2f2;
+  }
 
-      th, td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        text-align: left;
-        font-size: 16px;
-      }
+  .footer {
+    text-align: center;
+    margin-top: 10px; /* Réduction de la marge */
+    font-size: 12px;
+  }
 
-      th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-      }
+  /* Style pour l'impression */
+  @media print {
+    body {
+      zoom: 90%; /* Ajustez le zoom si nécessaire pour tout inclure */
+    }
+  }
+</style>
 
-
-
-      .footer {
-        text-align: center;
-        margin-top: 40px;
-        font-size: 16px;
-      }
-    </style>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -69,7 +71,10 @@
   </head>
   <body>
 
-    <!-- Contenu principal -->
+    <img src="font/L.jpeg" alt=""  width="120px" heigth="80px" >
+    <br>
+    <br>
+
     <div class="container">
         <header class="A">
             <h1 style="color:blue";>AUDIT DES ACTIVITES SUR LA PLATEFORME</h1>

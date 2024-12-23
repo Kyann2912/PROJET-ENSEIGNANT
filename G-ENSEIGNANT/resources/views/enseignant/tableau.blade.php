@@ -11,55 +11,45 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <h1>DAHSBOARD</h1> <br>
-
+            <h1>Tableau de Bord</h1> <br>
             <img src="font/Image.jpg" alt="" width="60px"> <p class="nom" >{{ $nom }} {{ $prenoms }}</p>
-
-
             <br>
             <br>
             <br>
-            <a href="/liste-utilisateurs">GESTION DES UTILISATEURS</a> <br>
-            <a href="/liste-occupations">GESTION DES OCCCUPATIONS</a> <br>
-            <a href="/liste-paiements">GESTION DES PAIEMENTS</a> <br>
-            <a href="/liste-filieres">GESTION DES FILIERES</a> <br>
-            <a href="/liste-emplois">GESTION DES EMPLOI DU TEMPS</a> <br>
-            <a href="/audit">AUDIT DES OPERATIONS</a> <br>
+            <img src="font/Image.jpg" alt="" width="30px" style="margin-top:13px"><a href="/liste-utilisateurs">GESTION DES UTILISATEURS</a> <br>
+            <img src="font/O.jpg" alt="" width="30px" style="margin-top:15px"><a href="/liste-occupations">GESTION DES OCCCUPATIONS</a> <br>
+            <img src="font/P.jpg" alt="" width="30px" style="margin-top:15px"><a href="/liste-paiements">GESTION DES PAIEMENTS</a> <br>
+            <img src="font/Y.jpg" alt="" width="30px" style="margin-top:15px"><a href="/liste-filieres">GESTION DES FILIERES</a> <br>
+            <img src="font/E.jpg" alt="" width="30px" style="margin-top:15px"><a href="/liste-emplois">GESTION  EMPLOIS DU TEMPS</a> <br>
+            <img src="font/A.jpg" alt="" width="30px" style="margin-top:15px"><a href="/audit">AUDIT DES OPERATIONS</a> <br>
 
             <br>
             <div class="logout">
                 <a href="/deconnexion/utilisateur">DECONNEXION</a>
             </div>
 
-
-
+        </div>
+        <div class="MM">
+            <p>UTILISATEURS</p>
+            <h1 class="user-count" style="color:green">{{ $utilisateur }}</h1>
+        </div>
+        <div class="MA">
+            <p>OCCCUPATIONS</p>
+            <h1 class="user-count" style="color:green">{{ $salle }}</h1>
+        </div>
+        <div class="MB">
+            <p>PAIEMENTS</p>
+            <h1 class="user-count" style="color:green">{{ $paiement }}</h1>
+        </div>
+        <div class="MC">
+            <p>FILIERES</p>
+            <h1 class="user-count" style="color:green">{{ $filiere }}</h1>
+        </div>
+        <div class="MD">
+            <p>EMPLOI</p>
+            <h1 class="user-count" style="color:green">{{ $emploi }}</h1>
         </div>
 
-        <div class="F">
-            <div>
-                <p>UTILISATEURS  <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">{{ $utilisateur }}</h1></p>
-                <br>
-                <p class="XC" >PAIEMENTS <h1 style="margin-left: 10px;color: rgba(145, 2, 2, 0.827);">{{$paiement}}</h1></p>
-            </div>
-
-            <div >
-                <div class="YANNO">
-                <p class="VL">OCCCUPATIONS <h1 style="margin-left: -150px;color: rgba(145, 2, 2, 0.827); margin-top: 20px;">{{$salle}}</h1> </p>
-                <br>
-                <div class="espace">
-                    <p class="KL">EMPLOI DU TEMPS  </p><br>
-                    <h1 style="margin-left: 310px;color: rgba(145, 2, 2, 0.827);margin-top: -10px;">{{$emploi}}</h1>
-                </div>
- 
-                <br>
-                </div>
-                <br>
-                <p class="V">FILIERES <h1 style="margin-left: 140px;color: rgba(145, 2, 2, 0.827);">{{$filiere}}</h1> </p>
-                <br>
-
-            </div>
-
-        </div>
         <div class="stat">
             <div style="width: 620px;height: 340px; margin-left: auto; margin-right: auto;">
                 <canvas id="myPieChart"></canvas>
@@ -100,9 +90,92 @@
     .A{
         padding-left: 0px;
         background-color: aliceblue;
-        width: 370px;
+        width: 388px;
         height: 551px;
     }
+
+
+  .MM {
+    text-align: center;
+    font-family: Times, serif;
+    margin-top: 5px;
+    margin-left:10px;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid rgba(3, 114, 250, 0.3);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: rgba(68, 107, 155, 0.99);
+    font-size: 24px;
+    font-weight: bold;
+    height: 110px;
+  }
+
+
+  .MA {
+    text-align: center;
+    font-family: Times, serif;
+    margin-top: 5px;
+    margin-left:10px;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid rgba(3, 114, 250, 0.3);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: rgba(68, 107, 155, 0.99);
+    font-size: 24px;
+    font-weight: bold;
+    height: 110px;
+  }
+
+  .MB {
+    text-align: center;
+    font-family: Times, serif;
+    margin-top: 5px;
+    margin-left:10px;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid rgba(3, 114, 250, 0.3);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: rgba(68, 107, 155, 0.99);
+    font-size: 24px;
+    font-weight: bold;
+    height: 110px;
+  }
+
+
+  .MC {
+    text-align: center;
+    font-family: Times, serif;
+    margin-top: 5px;
+    margin-left:10px;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid rgba(3, 114, 250, 0.3);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: rgba(68, 107, 155, 0.99);
+    font-size: 24px;
+    font-weight: bold;
+    height: 110px;
+  }
+
+  .MD {
+    text-align: center;
+    font-family: Times, serif;
+    margin-top: 5px;
+    margin-left:10px;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid rgba(3, 114, 250, 0.3);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: rgba(68, 107, 155, 0.99);
+    font-size: 24px;
+    font-weight: bold;
+    height: 110px;
+  }
 
 
     .A h1{
@@ -128,7 +201,7 @@
         line-height: 2.5;
         text-decoration: none;
         font-weight: bold;
-        margin-left:5px ;
+        margin-left:30px ;
 
     }
     .X:hover {
@@ -214,6 +287,8 @@
         font-weight: bold;
     }
 
+    
+
 
 
 
@@ -227,4 +302,5 @@
 
 
     </style>
+    
 </html>
