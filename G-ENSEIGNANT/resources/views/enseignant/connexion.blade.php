@@ -15,6 +15,17 @@
                 votre voyage avec nous.</p>
             <!-- <a href="/inscription.html"> S'inscrire</a> -->
 
+            @error('email','password')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('password')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+
         </div>
     
         <div class="A">
@@ -24,10 +35,16 @@
                 {{ session('message') }}
             </div>
             @endif
+            @if(session('yann'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('yann') }}
+            </div>
+            @endif
             <form action="/ajouter/utilisateur" method="post">
                 @csrf
                 <label for="">Email</label> <br>
                  <input type="text" class="form-control"  name="email" id=""><br>
+
                 <label for="">Rôle</label> <br>
                 <select class="form-select" name="role" id="">
                     <option value="admin">Admin</option>

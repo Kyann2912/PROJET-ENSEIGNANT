@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project name="Conception Projet Enseignant" company="" webLink="http://" view-date="2024-12-17" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3311" locale="fr_FR">
     <description><![CDATA[Réaliser la conception du projet gestion des enseignants vacataires]]></description>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd15" name="Notes" width="20" order="-1"/>
         <field id="tpd3" name="Nom" width="200" order="0"/>
         <field id="tpd4" name="Date de début" width="75" order="1"/>
         <field id="tpd5" name="Date de fin" width="75" order="2"/>
+        <field id="tpd15" name="Notes" width="20" order="3"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
@@ -40,7 +40,7 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" uid="01b40e863d164cb49731e035f31bd528" name="Diagramme de classe" color="#0066ff" meeting="false" start="2024-12-23" duration="1" complete="0" expand="true"/>
+        <task id="0" uid="01b40e863d164cb49731e035f31bd528" name="Diagramme de classe" color="#0066ff" meeting="false" start="2024-12-24" duration="1" complete="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>

@@ -17,19 +17,54 @@ use Illuminate\Support\Facades\Mail; //Pour le mail
 use App\Mail\MessageNotification;    //Pour le mail
 use App\Mail\Email;    //Pour le mail
 
+use App\Models\Emploi_temps;  //Modèle emploi du temps 
+
+
 
 
 use App\Models\Administrateur;  
 
 
 class EnseignantController extends Controller
+
+
 {
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'file_path' => 'required|file|mimes:pdf,jpg,png,docx|max:2048',
+            'debut' => 'required|date',
+            'fin' => 'required|date',
+        ]);
+
+        $filePath = $request->file('file_path')->store('emplois', 'public');
+
+        $emploi = new Emploi_temps();
+        $emploi->email = $request->input('email');
+        $emploi->file_path = $filePath;
+        $emploi->debut = $request->input('debut');
+        $emploi->fin = $request->input('fin');
+        $emploi->save();
+
+        $currentFiliereCount = session('emploi', 0);
+        session(['emploi' => $currentFiliereCount + 1]);
+
+        return redirect('/liste-emplois')->with('yann', 'Emploi du temps ajouté avec succès');
+    }
+
+
+
+    
 
     public function A(){
         return view('enseignant.emploi-temps');
     }
     public function B(){
-        return view('enseignant.listeemploitemps');
+        $emplois = Emploi_temps :: all();
+        return view('enseignant.listeemploitemps',compact('emplois'));
 
     }
 
@@ -169,19 +204,25 @@ class EnseignantController extends Controller
     }
 
     public function N(){
-        return view('enseignant.professeur-emploi');
-    }
-
-    public function O(){
         $user = Auth::user();
         $nom = $user->name;
         $prenoms = $user->prenoms;
-    
-        // Récupérer les paiements du professeur connecté
-        $paiements = Paiement::where('id', $user->id)->get();
-    
-        return view('enseignant.professeur-paiement', compact('paiements'));
+        $email = $user->email;
+
+        // Récupérer les emplois du temps  du professeur connecté
+        $emplois = Emploi_temps::where('email', $user->email)->get();
+
+        return view('enseignant.professeur-emploi',compact('emplois'));
     }
+
+
+
+
+
+
+
+
+
 
     public function P(){
         return view('enseignant.message');
@@ -263,11 +304,11 @@ class EnseignantController extends Controller
     }
 
     public function C(){
-        $filiere = session('filiere', 0);
-        $utilisateur = session('utilisateur', 0);
-        $paiement = session('paiement', 0);
-        $emploi = session('emploi', 0);
-        $salle = session('salle', 0);
+        $filiere = session('filiere',0,1200);
+        $utilisateur = session('utilisateur', 0,1200);
+        $paiement = session('paiement',0,1200);
+        $emploi = session('emploi', 0,1200);
+        $salle = session('salle', 0,1200);
         $data = [
             'labels'=> ['filiere','utilisateur','paiement','emploi','salle'],
             'values'=> [$filiere,$utilisateur,$paiement,$emploi,$salle]
@@ -398,6 +439,10 @@ class EnseignantController extends Controller
         $credentials = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required',
+        ],
+        [
+            'email.required' => 'Veuillez renseigner tous les champs',
+            'password.required' => 'Veuillez renseigner tous les champs',
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -482,29 +527,152 @@ class EnseignantController extends Controller
     public function upadte_paiement(Request $request){
 
         $request->validate([
-            'email'=>'required',
+            'id_professeur'=>'required',
             'filiere_niveau'=>'required',
             'cours'=>'required',
             'nbre_heures'=>'required',
-            'montant'=>'required',
+            'montant_heure'=>'required',
         ]);
 
-        $paiement =  Paiement :: find($request->id);
-        $paiement->email = $request->email;
+        $total =  $request->nbre_heures * $request->montant_heure ;
+
+        $paiement =  Paiement :: find($id);
+        if (!$paiement) {
+            return redirect('/liste-occupations')->with('upadte', 'Occupation non trouvée');
+        }
+
+        $paiement->id_professeur = $request->id_professeur;
         $paiement->filiere_niveau = $request->filiere_niveau;
         $paiement->cours = $request->cours;
         $paiement->nbre_heures = $request->nbre_heures;
-        $paiement->montant = $request->montant;
+        $paiement->montant_heure = $request->montant_heure;
+        $paiement->montant_total = $total;
         $paiement->save();
 
         // $currentFiliereCount = session('paiement', 0);
         // session(['paiement' => $currentFiliereCount + 1]);
 
-        return redirect('/liste-paiements')->with('update','Paiement modifier avec succès')->withInput([]);
+        return redirect('/liste-paiements')->with('yann','Paiement modifier avec succès')->withInput([]);
 
 
 
     }
+
+
+    public function Télécgarger_emploi_temps()
+{
+    // Récupérer l'utilisateur connecté
+    $user = Auth::user();
+    
+    // Récupérer l'emploi du temps associé à l'id de l'utilisateur connecté
+    $emploi = Emploi_temps::where('email', $user->email)->first();
+    
+    // Vérifier si un emploi du temps existe pour cet utilisateur
+    if ($emploi) {
+        // Récupérer le chemin du fichier
+        $filePath = storage_path('app/public/' . $emploi->file_path);
+        
+        // Vérifier si le fichier existe
+        if (file_exists($filePath)) {
+            // Retourner le fichier pour téléchargement
+            return response()->download($filePath);
+        } else {
+            return redirect('/professeur-emploi')->with('erreur', 'Le fichier de l\'emploi du temps n\'existe pas.Veuillez contacter l\'administration.');
+        }
+    } else {
+        return redirect('/professeur-emploi')->with('ephrem', 'Aucun emploi du temps trouvé pour cet utilisateur.');
+    }
+}
+
+
+    public function supprimer_emploi($id){
+        $supprimer = Emploi_temps::find($id);
+        $supprimer->delete();
+        return redirect('liste-emplois')->with('sms','Emploi du temps supprimé avec succès');
+
+
+    }
+
+    public function modifier_emploi($id){
+        $emploi = Emploi_temps::find($id);
+        return view ('enseignant.update-emploi',compact('emploi'));
+    }
+
+
+    public function modifier_traitement_emploi(Request $request)
+    {
+        // Validation des données
+        $request->validate([
+            'email' => 'required|email',
+            'file_path' => 'nullable|file|mimes:pdf,jpg,png,docx|max:2048', // Fichier optionnel
+            'debut' => 'required|date',
+            'fin' => 'required|date',
+        ]);
+    
+        // Vérifier si l'emploi du temps existe
+        $emploi = Emploi_temps::find($request->id);
+        if (!$emploi) {
+            return redirect('/liste-emplois')->with('error', 'Emploi du temps non trouvé.');
+        }
+    
+        // Mise à jour des champs
+        $emploi->email = $request->email;
+        $emploi->debut = $request->debut;
+        $emploi->fin = $request->fin;
+    
+        // Gestion du fichier si un nouveau fichier est téléchargé
+        if ($request->hasFile('file_path')) {
+            $filePath = $request->file('file_path')->store('emplois', 'public');
+            $emploi->file_path = $filePath;
+        }
+    
+        // Sauvegarder les modifications
+        $emploi->upadte();
+    
+        // Redirection avec message de succès
+        return redirect('/liste-emplois')->with('reine', 'Emploi du temps modifié avec succès.');
+    }
+    
+
+
+
+
+
+
+
+
+
+
+public function paiementsProfesseur()
+{
+    // Récupérer l'utilisateur actuellement connecté
+    $user = Auth::user();
+
+    // Récupérer les paiements du professeur connecté
+    $paiements = Paiement::where('id_professeur', $user->id_professeur)->get();
+    // $paiements = Paiement::where('id', $user->id)->get();
+
+    return view('enseignant.professeur-paiement', compact('paiements'));
+
+
+    // Vérifier que l'utilisateur est un professeur
+    // if ($user->role === 'professeur') {
+    //     // Récupérer les paiements en fonction de l'email de l'utilisateur
+    //     $paiements = Paiement::whereHas('professeur', function ($query) use ($user) {
+    //         $query->where('email', $user->email);
+    //     })->get();
+
+    //     // Retourner la vue avec les paiements
+    //     // return view('enseignant.paiements-professeur', compact('paiements'));
+    //     return view('enseignant.professeur-paiement', compact('paiements'));
+
+    // } else {
+    //     // Rediriger avec un message d'erreur si l'utilisateur n'est pas un professeur
+    //     return redirect('/connexion')->with('message', 'Vous n\'êtes pas autorisé à accéder à cette page.');
+    // }
+}
+
+
 
 
 

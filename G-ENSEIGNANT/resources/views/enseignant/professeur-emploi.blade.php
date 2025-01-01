@@ -21,24 +21,42 @@
         </div>
         <br>
         <table class="table">
+        @if(session('erreur'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('erreur') }}
+            </div>
+        @endif
+        @if(session('ephrem'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('ephrem') }}
+            </div>
+        @endif
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Email-Professeur</th>
-                    <th>Filière-Niveau</th>
                     <th>Période-Debut</th>
                     <th>Période-Fin</th>
                     <th>Actions</th>
                 </tr>
             </thead>
+            @php
+                $yann = 1;
+            @endphp
             <tbody>
-                <td>1</td>
-                <td>Alpha</td>
-                <td>IGL-L3</td>
-                <td>10/10/2020</td>
-                <td>08h-12h</td>
-                <td><a href="" class="btn btn-info">TELECHARGER</a></td>
-            </tbody>
+                    @foreach($emplois as $emploi)
+                        <tr>
+                            <td>{{ $yann  }}</td>
+                            <td>{{ $emploi->email }}</td>
+                            <td>{{ $emploi->debut }}</td>
+                            <td>{{ $emploi->fin }}</td>
+                            <td><a href="/télécharger/emploi" class="btn btn-info">TELECHARGER</a></td>
+                        </tr>
+                    @php
+                        $yann++;
+                    @endphp
+                    @endforeach
+                </tbody>
         </table>
 
     </div>
@@ -63,6 +81,8 @@
     .table{
         color: white;
         margin-left: 10px;
+        position: fixed;
+
 
     }
     .table td{

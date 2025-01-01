@@ -13,7 +13,7 @@
         <div class="A">
             <h1>Ajouter une Filière</h1>
             <br>
-            <form action="{{ route('filiere.store') }}" method="POST">
+            <form action="/filiere/store" method="POST">
                 @csrf
                 <label for="departement">Département</label> <br>
                 <input type="text" class="form-control"  name="departement" id="departement"><br>

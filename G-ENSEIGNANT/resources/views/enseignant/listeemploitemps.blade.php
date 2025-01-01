@@ -16,32 +16,65 @@
             <hr>
             <div class="ensemble">
                 <a href="/emploi-temps" class="btn btn-success" >AJOUTER UN EMPLOI-TEMPS</a>
-                <input type="search" class="form-control " placeholder="kyann372@gmail.com">
-                <a href="" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">RECHERCHER</a>
+                <!-- <input type="search" class="form-control " placeholder="kyann372@gmail.com">
+                <a href="" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">RECHERCHER</a> -->
                 <a href="/tableau" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">DASHBOARD</a>
             </div>
 
         </div>
         <br>
         <table class="table">
+        @if(session('reine'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('reine') }}
+            </div>
+        @endif
+        @if(session('yann'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('yann') }}
+            </div>
+        @endif
+        @if(session('sms'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('sms') }}
+            </div>
+        @endif
+        @if(session('franck'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('franck') }}
+            </div>
+        @endif
+        @if(session('reine'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('reine') }}
+            </div>
+        @endif
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Email-Professeur</th>
-                    <th>Nom-Fichier</th>
                     <th>Période-Debut</th>
                     <th>Période-Fin</th>
                     <th>Actions</th>
                 </tr>
             </thead>
+            @php
+                $yann = 1;
+            @endphp
             <tbody>
-                <td>1</td>
-                <td>Alpha</td>
-                <td>IGL-L3</td>
-                <td>10/10/2020</td>
-                <td>08h-12h</td>
-                <td><a href="" class="btn btn-info">TELECHARGER</a> <a href="" class="btn btn-danger">MODIFIER</a></td>
-            </tbody>
+                    @foreach($emplois as $emploi)
+                        <tr>
+                            <td>{{ $yann  }}</td>
+                            <td>{{ $emploi->email }}</td>
+                            <td>{{ $emploi->debut }}</td>
+                            <td>{{ $emploi->fin }}</td>
+                            <td><a href="/modifier/emploi/{{ $emploi->id }}" class="btn btn-info">MODIFIER</a> <a href="/supprimer/emploi/{{ $emploi->id }}" class="btn btn-danger">SUPPRIMER</a></td>
+                        </tr>
+                    @php
+                        $yann++;
+                    @endphp
+                    @endforeach
+                </tbody>
         </table>
 
     </div>

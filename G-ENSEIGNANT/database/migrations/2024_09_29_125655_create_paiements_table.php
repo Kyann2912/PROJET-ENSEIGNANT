@@ -20,10 +20,8 @@ return new class extends Migration
             $table->String('nbre_heures');
             $table->decimal('montant_heure');
             $table->decimal('montant_total');
-
             $table->unsignedBigInteger('id_professeur');
-            $table->foreign('id_professeur')->references('id')->on('paiements')->onDelete('cascade');
-
+            $table->foreign('id_professeur')->references('id')->on('professeurs')->onDelete('cascade');
             $table->timestamps();
         });
     }

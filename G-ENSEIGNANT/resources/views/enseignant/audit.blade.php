@@ -29,6 +29,7 @@
         width: 80%;
         margin: 0 auto;
         border: 1px solid #000;
+        margin-left:30px;
       }
 
       .table-container {
@@ -76,7 +77,7 @@
     <div class="container">
         <header class="A">
             <h1 style="color:blue";>AUDIT DES ACTIVITES SUR LA PLATEFORME</h1>
-            <hr>
+            <hr style="margin-left:20px";>
         </header>
         <br>
 

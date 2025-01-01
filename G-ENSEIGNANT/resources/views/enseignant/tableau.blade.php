@@ -51,27 +51,67 @@
         </div>
 
         <div class="stat">
-            <div style="width: 620px;height: 340px; margin-left: auto; margin-right: auto;">
-                <canvas id="myPieChart"></canvas>
+            <div style="width: 620px;height: 340px; margin-left: -250px; ">
+                <canvas id="myPieChart"></canvas> 
+            </div>
+
+            <div style="width: 500px; height: 800px;margin-left: 150px;margin-top:-300px;">
+                <canvas id="myLineChart"></canvas>
             </div>
         </div>
         
         <script>
-            const ctx = document.getElementById('myPieChart').getContext('2d');
-            const data = {
-            labels: @json($data['labels']),
-        };
-            new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: data.labels,
-                    datasets: [{
-                        data: @json($data['values']),
-                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0','black']
-                    }]
+    // Données partagées
+    const labels = @json($data['labels']);
+    const values = @json($data['values']);
+
+    // Diagramme circulaire
+    const pieCtx = document.getElementById('myPieChart').getContext('2d');
+    new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: values,
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', 'black']
+            }]
+        }
+    });
+
+    // Diagramme de courbe
+    const lineCtx = document.getElementById('myLineChart').getContext('2d');
+    new Chart(lineCtx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Données',
+                data: values,
+                borderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', 'black'], 
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', 'black'],
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Catégories'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Valeurs'
+                    },
+                    beginAtZero: true
                 }
-            });
-        </script>
+            }
+        }
+    });
+</script>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

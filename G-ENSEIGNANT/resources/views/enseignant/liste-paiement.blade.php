@@ -16,8 +16,8 @@
             <hr>
             <div class="ensemble">
                 <a href="/paiement" class="btn btn-success" >AJOUTER UN PAIEMENT</a>
-                <input type="search" class="form-control " placeholder="kyann372@gmail.com">
-                <a href="" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">RECHERCHER</a>
+                <!-- <input type="search" class="form-control " placeholder="kyann372@gmail.com">
+                <a href="" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">RECHERCHER</a> -->
                 <a href="/tableau" class="btn btn-success" style="width: 150px;margin-left: 60px; height: 40px;">DASHBOARD</a>
             </div>
 
@@ -37,6 +37,11 @@
         @if(session('update'))
             <div class="alert alert-success" role="alert" style="margin:20px;">
                 {{ session('update') }}
+            </div>
+        @endif
+        @if(session('yann'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('yann') }}
             </div>
         @endif
             <thead>                

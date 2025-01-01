@@ -11,27 +11,28 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <form action=""  method="POST">
-                <h1>Ajouter un Emploi du Temps </h1> <br>
+            <h1>Ajouter un Emploi du Temps </h1> <br>
+            <form action="{{ route('emploi.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <label for="">Email-Professeur</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
-                <label for="">Nom-Fichier</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
-                <label for="">Fichier</label> <br>
-                <input type="file" class="form-control"  name="" id=""><br>
+                <input type="text" class="form-control"  name="email" id="email"><br>
+                <!-- <label for="">Nom-Fichier</label> <br>
+                <input type="text" class="form-control"  name="name_fichier" id="name_fichier"><br> -->
+                <label for="">Image</label> <br>
+                <input type="file" class="form-control"  name="file_path" id="file_path" placeholde="Chosir une image"><br>
                 <label for="">Période-Debut</label> <br>
-                <input type="date" class="form-control"  name="" id=""><br>
+                <input type="date" class="form-control"  name="debut" id="debut"><br>
                 <label for="">Période-Fin</label> <br>
-                <input type="date" class="form-control"  name="" id=""><br>
+                <input type="date" class="form-control"  name="fin" id="fin"><br>
                 <br>
-                <input type="submit" value="Ajouter" class="X">
+                <button class="X" type="submit">Ajouter</button>
             </form>
 
         </div>
         <div class="B">
 
             <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1>
-            <p>Vous voullez consulter la liste des emplois du temps ajoutés ?</p>
+            <p>Vous voulez consulter la liste des emplois du temps ajoutés ?</p>
             <a href="/liste-emplois">Consulter</a> 
     
         </div>
@@ -128,6 +129,7 @@
         color: white;
         font-family:  Times, serif;
         font-size: 20px;
+        margin-left:80px;
 
     }
     .X:hover {

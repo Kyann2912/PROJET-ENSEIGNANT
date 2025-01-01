@@ -22,9 +22,11 @@ Route::get('/', function () {
 });
 
 
+Route::post('/emploi/store', [EnseignantController::class, 'store'])->name('emploi.store');
+
 Route::get('/emploi-temps', [EnseignantController::class,'A']);
 
-Route::get('/liste-emplois',[EnseignantController::class,'B'])->middleware('auth');
+Route::get('/liste-emplois',[EnseignantController::class,'B']);
 
 Route::get('/tableau',[EnseignantController::class,'C']);
 
@@ -49,7 +51,7 @@ Route::get('/professeur',[EnseignantController::class,'M'])->middleware('auth');
 
 Route::get('/professeur-emploi',[EnseignantController::class,'N'])->middleware('auth');
 
-Route::get('/professeur-paiement',[EnseignantController::class,'O'])->middleware('auth');
+// Route::get('/professeur-paiement',[EnseignantController::class,'O'])->middleware('auth');
 
 Route::get('/message',[EnseignantController::class,'P'])->middleware('auth');
 
@@ -73,6 +75,12 @@ Route::post('/filiere/store', [EnseignantController::class, 'ajouter_filiere_tra
 
 Route::post('/occupation/store', [EnseignantController::class, 'ajouter_occupation_traitement'])->name('occupation.store');
 
+
+Route::post('/emploi/store', [EnseignantController::class, 'store'])->name('emploi.store');
+
+
+
+// Route::post('/emploi/store', [EnseignantController::class, 'store'])->name('emploi.store');
 
 
 
@@ -151,11 +159,30 @@ Route::post('/new/password',[EnseignantController::class,'nouveau']);
 
 
 
-Route::post('/paiement/update',[EnseignantController::class,'upadte_paiement']);
+Route::post('/paiement/update',[EnseignantController::class,'upadte_paiement'])->name('paiement.upadte');
 
 
 
 Route::post('/paiement/store', [EnseignantController::class, 'ajout_paiement']);
 
 
+Route::post('/emploi/modifier', [EnseignantController::class, 'modifier_traitement_emploi']);
+
+
+
 Route :: get('/rapport',[EnseignantController::class,'pdf']);
+
+
+Route::get('/télécharger/emploi', [EnseignantController::class, 'Télécgarger_emploi_temps']);
+
+
+
+
+Route::get('/supprimer/emploi/{id}', [EnseignantController::class, 'supprimer_emploi']);
+
+
+Route::get('/modifier/emploi/{id}', [EnseignantController::class, 'modifier_emploi']);
+
+
+Route::get('/professeur/paiements', [EnseignantController::class, 'paiementsProfesseur'])->name('professeur.paiements')->middleware('auth');
+

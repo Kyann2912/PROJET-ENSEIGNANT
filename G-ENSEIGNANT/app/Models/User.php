@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->role === 'professeur';
     }
 
+    public function paiements()
+    {
+        return $this->hasMany(Paiement::class, 'id_professeur'); // Assurez-vous que 'id_professeur' correspond bien à la clé étrangère dans la table 'paiements'.
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

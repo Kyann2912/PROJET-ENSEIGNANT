@@ -16,12 +16,9 @@ return new class extends Migration
         Schema::create('emploi_temps', function (Blueprint $table) {
             $table->id();
             $table->String('email');
-            $table->String('nom');
-            $table->String('fichier');
+            $table->String('file_path');
             $table->date('debut');
             $table->date('fin');
-            // $table->unsignedBigInteger('id_professeur');
-            // $table->foreign('id_professeur')->references('id')->on('professeurs')->oneDelete('cascade');
             $table->timestamps();
         });
     }

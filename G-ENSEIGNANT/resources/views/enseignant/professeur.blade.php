@@ -11,13 +11,14 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <h1>DAHSBOARD</h1> <br>
+            <h1>Tableau de Bord</h1> <br>
             <img src="font/Image.jpg" alt="" width="60px"> <p class="nom" >{{ $nom }} {{ $prenoms }}</p> <br>
+            <br>
 
-            <a href="/professeur-emploi">EMPLOI DU TEMPS</a> <br>
+            <img src="font/E.jpg" alt="" width="30px" style="margin-top:0px; margin-left:4px;" ><a href="/professeur-emploi">EMPLOI DU TEMPS</a> <br>
             <br>
             <br>
-            <a href="/professeur-paiement">MES PAIEMENTS</a> <br>
+            <img src="font/P.jpg" alt="" width="30px" style="margin-top:0px; margin-left:4px;" ><a href="{{ route('professeur.paiements') }}">MES PAIEMENTS</a> <br>
             <br>
             <br>
             <a href="/message">CONTACTER L'ADMINISTRATION</a>
@@ -33,6 +34,18 @@
 
         </div>
         <div class="B">
+        <div class="MM">
+                <p>PAIEMENTS</p>
+                <h1 class="user-count" style="color:green"></h1>
+            </div>
+            <div class="MA">
+                <p>EMPLOI DU TEMPS</p>
+                <h1 class="user-count" style="color:green"></h1>
+            </div>
+            <div class="MB">
+                <p>CONTACT ADMINISTRATION</p>
+                <h1 class="user-count" style="color:green"></h1>
+            </div>
 
     
         </div>
@@ -118,6 +131,55 @@
         border-radius:15px;
 
     }
+
+      .MM {
+    text-align: center;
+    font-family: Times, serif;
+    margin-top: 5px;
+    margin-left:10px;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid rgba(3, 114, 250, 0.3);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: rgba(68, 107, 155, 0.99);
+    font-size: 24px;
+    font-weight: bold;
+    height: 110px;
+  }
+
+
+  .MA {
+    text-align: center;
+    font-family: Times, serif;
+    margin-top: 5px;
+    margin-left:10px;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid rgba(3, 114, 250, 0.3);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: rgba(68, 107, 155, 0.99);
+    font-size: 24px;
+    font-weight: bold;
+    height: 110px;
+  }
+
+  .MB {
+    text-align: center;
+    font-family: Times, serif;
+    margin-top: 5px;
+    margin-left:10px;
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid rgba(3, 114, 250, 0.3);
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    color: rgba(68, 107, 155, 0.99);
+    font-size: 24px;
+    font-weight: bold;
+    height: 110px;
+  }
 
     </style>
 </html>

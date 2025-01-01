@@ -11,46 +11,29 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <h1>Modifier un Paiement </h1> <br>
-            <form action="/paiement/update" method="post">
+            <h1>Modifier un Emploi du Temps </h1> <br>
+            <form action="/emploi/modifier" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="text"  name="id" style="display: none;"  value="{{ $paiement->id }}">
-                <label for="">Id-Professeur</label> <br>
-                <input type="text" class="form-control"  name="id_professeur" id="id_professeur" value="{{ $paiement->id_professeur }}"><br>
-                <label for="">Filière-Niveau</label> <br>
-                <select  class="form-select" name="filiere_niveau" id="">
-                    <option value="IGL-L1"   {{ $paiement->priorite == 'IGL-L1' ? 'selected' : '' }}>IGL-L1</option>
-                    <option value="IGL-L2"   {{ $paiement->priorite == 'IGL-L2' ? 'selected' : '' }}>IGL-L2</option>
-                    <option value="IGL-L3"   {{ $paiement->priorite == 'IGL-L3' ? 'selected' : '' }}>IGL-L3</option>
-
-                    <option value="RIT-L1"   {{ $paiement->priorite == 'RIT-L1' ? 'selected' : '' }}>RIT-L1</option>
-                    <option value="RIT-L2"   {{ $paiement->priorite == 'RIT-L2' ? 'selected' : '' }}>RIT-L2</option>
-                    <option value="RIT-L3"   {{ $paiement->priorite == 'RIT-L3' ? 'selected' : '' }}>RIT-L3</option>
-
-                    <option value="DROIT-L1"   {{ $paiement->priorite == 'DROIT-L1' ? 'selected' : '' }}>DROIT-L1</option>
-                    <option value="DROIT-L2"   {{ $paiement->priorite == 'DROIT-L2' ? 'selected' : '' }}>DROIT-L2</option>
-                    <option value="DROIT-L3"   {{ $paiement->priorite == 'DROIT-L3' ? 'selected' : '' }}>DROIT-L3</option>
-
-                    <option value="FBA-L1"   {{ $paiement->priorite == 'FBA-L1' ? 'selected' : '' }}>FBA-L1</option>
-                    <option value="FBA-L2"   {{ $paiement->priorite == 'FBA-L2' ? 'selected' : '' }}>FBA-L2</option>
-                    <option value="FBA-L3"   {{ $paiement->priorite == 'FBA-L3' ? 'selected' : '' }}>FBA-L3</option>
-                </select> <br>
-                <label for="">Cours</label> <br>
-                <input type="text" class="form-control"  name="cours" id="cours" value="{{ $paiement->cours }}"><br>
-                <label for="">Nbre-Heures</label> <br>
-                <input type="text" class="form-control"  name="nbre_heures" id="nbre_heures" value="{{ $paiement->nbre_heures }}"><br>
-                <label for="">Montant</label> <br>
-                <input type="text" class="form-control"  name="montant" id="montant" value="10000" ><br>
+                <label for="">Email-Professeur</label> <br>
+                <input type="text" class="form-control"  name="email" id="email" value="{{ $emploi->email }}"><br>
+                <!-- <label for="">Nom-Fichier</label> <br>
+                <input type="text" class="form-control"  name="name_fichier" id="name_fichier"><br> -->
+                <label for="">Image</label> <br>
+                <input type="file" class="form-control"  name="file_path" id="file_path" placeholde="Chosir une image"  value="{{ $emploi->file_path }}"><br>
+                <label for="">Période-Debut</label> <br>
+                <input type="date" class="form-control"  name="debut" id="debut"  value="{{ $emploi->debut }}"><br>
+                <label for="">Période-Fin</label> <br>
+                <input type="date" class="form-control"  name="fin" id="fin"  value="{{ $emploi->fin }}"><br>
                 <br>
-                <input type="submit" value="Modifier" class="X">
+                <button class="X" type="submit">Modifier</button>
             </form>
 
         </div>
         <div class="B">
 
             <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1>
-            <p>Vous voullez consulter la liste des paiements ajoutés ?</p>
-            <a href="/liste-paiements">Consulter</a> 
+            <p>Vous voulez consulter la liste des emplois du temps ajoutés ?</p>
+            <a href="/liste-emplois">Consulter</a> 
     
         </div>
     </div>
@@ -120,7 +103,7 @@
     }
     .A h1{
         margin-bottom: 20px;
-        margin-left: 80px;
+        margin-left: 50px;
         font-family:  Times, serif;
         font-weight: bold;
 
@@ -146,6 +129,7 @@
         color: white;
         font-family:  Times, serif;
         font-size: 20px;
+        margin-left:80px;
 
     }
     .X:hover {
@@ -161,9 +145,6 @@
         border-radius: 5px;
 
     }
-
-
-
 
 
 
