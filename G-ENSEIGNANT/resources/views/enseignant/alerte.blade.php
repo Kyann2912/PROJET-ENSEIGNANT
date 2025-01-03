@@ -11,10 +11,9 @@
   <br>
   <div class="container mt-4">
         <h1 class="text-center">Modification de Mot de Passe</h1>
-        <p>Salut, professeur <strong>{{ $name }}  {{ $prenoms }}</strong> votre mot de passe pour l'accès à la plateforme de gestion de l'université pour vos informations est <strong>{{  $mot_passe  }}</strong></p>
-        <p>Veuillez garder le mot de passe de manière confidentielle.</p>
+        <p>Salut, professeur <strong>{{ $nom }}  {{ $prenoms }}</strong> votre mot de passe pour l'accès à la plateforme de gestion de l'université pour vos informations vient d'être modifié.</p>
+        <p>Si vous n'êtes pas à l'origine de cette modification, veuillez informer en urgence l'administration.</p>
         <p>Vous pouvez nous contacter au <strong>(+225 01 72 42 60 87 )</strong> ou par mail <strong>kouakouyann782@gmail.com</strong> pour toutes préoccupations. </p>
-        <p><strong>NB:</strong>Une mauvaise attitude ou en cas d'indiscipline, vous n'aurez plus d'accès à la plateforme</p>
         <p>L'administration vous remercie .</p>
     </div>
 

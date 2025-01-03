@@ -14,16 +14,13 @@
             <h1>Tableau de Bord</h1> <br>
             <img src="font/Image.jpg" alt="" width="60px"> <p class="nom" >{{ $nom }} {{ $prenoms }}</p> <br>
             <br>
-
             <img src="font/E.jpg" alt="" width="30px" style="margin-top:0px; margin-left:4px;" ><a href="/professeur-emploi">EMPLOI DU TEMPS</a> <br>
-            <br>
             <br>
             <img src="font/P.jpg" alt="" width="30px" style="margin-top:0px; margin-left:4px;" ><a href="{{ route('professeur.paiements') }}">MES PAIEMENTS</a> <br>
             <br>
+            <a href="/professeur/password">MODIFIER MON MOT DE PASSE</a> <br>
             <br>
-            <a href="/message">CONTACTER L'ADMINISTRATION</a>
-            <br>
-            <br>
+            <a href="/message">CONTACTER L'ADMINISTRATION</a> <br>
             <br>
             <br>
             <div class="logout">

@@ -26,8 +26,24 @@
             </form>
         </div>
         <div class="B">
-
-            <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1>
+            @error('departement')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('nom_filiere')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('responsable')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            <br>
+            <br>
+            <!-- <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1> -->
             <p>Vous voullez consulter la liste des filières ajoutés ?</p>
             <a href="/liste-filieres">Consulter</a> 
             <!-- <a href="">Dashboard</a> -->

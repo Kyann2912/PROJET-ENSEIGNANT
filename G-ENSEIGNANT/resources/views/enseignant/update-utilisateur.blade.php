@@ -11,51 +11,37 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <h1>Ajouter un Emploi du Temps </h1> <br>
-            <form action="{{ route('emploi.store') }}" method="POST" enctype="multipart/form-data">
+            <h1>Modifier un Utilisateur </h1> <br>
+            <form action="/inscription/update" method="post">
                 @csrf
-                <label for="">Email-Professeur</label> <br>
-                <input type="text" class="form-control"  name="email" id="email"><br>
-                <!-- <label for="">Nom-Fichier</label> <br>
-                <input type="text" class="form-control"  name="name_fichier" id="name_fichier"><br> -->
-                <label for="">Image</label> <br>
-                <input type="file" class="form-control"  name="file_path" id="file_path" placeholde="Chosir une image"><br>
-                <label for="">Période-Debut</label> <br>
-                <input type="date" class="form-control"  name="debut" id="debut"><br>
-                <label for="">Période-Fin</label> <br>
-                <input type="date" class="form-control"  name="fin" id="fin"><br>
+                <input type="text" name="id" style="display: none;" value="{{ $utilisateur->id }}">
+                <label for="">Nom</label> <br>
+                <input type="text" class="form-control"  name="name" id="" value="{{ $utilisateur->name }}"><br>
+                <label for="">Prenoms</label> <br>
+                <input type="text" class="form-control"  name="prenoms" id="" value="{{ $utilisateur->prenoms }}"><br>
+                <label for="">Email</label> <br>
+                <input type="text" class="form-control"  name="email" id="" value="{{ $utilisateur->email }}"><br>
+                <label for="">Matière</label> <br>
+                <input type="text" class="form-control"  name="matiere" id=""  value="{{ $professeur->matiere ?? '' }}"><br>
+                <label for="">Rôle</label> <br>
+                <select class="form-select" name="role" id="role" required="">
+                    <option value="admin" {{ $utilisateur->role === 'admin' ? 'selected' : '' }}>Admin</option>
+                    <option value="professeur" {{ $utilisateur->role === 'professeur' ? 'selected' : '' }}>Professeur</option>
+                </select> <br>
+                <label for="">Password</label> <br>
+                <input type="password" class="form-control"  name="password" id=""><br>
                 <br>
-                <button class="X" type="submit">Ajouter</button>
+                <input type="submit" value="Modifier" class="X">
             </form>
 
         </div>
         <div class="B">
-        @error('email')
-                <div class="alert alert-danger" role="alert" style="margin:20px;">
-                {{ $message }}
-                </div>
-            @enderror
-            @error('file_path')
-                <div class="alert alert-danger" role="alert" style="margin:20px;">
-                {{ $message }}
-                </div>
-            @enderror
-            @error('debut')
-                <div class="alert alert-danger" role="alert" style="margin:20px;">
-                {{ $message }}
-                </div>
-            @enderror
-            @error('fin')
-                <div class="alert alert-danger" role="alert" style="margin:20px;">
-                {{ $message }}
-                </div>
-            @enderror
-            <br>
-            <br>
-            <!-- <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1> -->
-            <p>Vous voulez consulter la liste des emplois du temps ajoutés ?</p>
-            <a href="/liste-emplois">Consulter</a> 
 
+            <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1>
+            <p>Vous voulez consulter la liste des utilisateurs ajoutés ?</p>
+            <a href="/liste-utilisateurs">Consulter</a> 
+            <!-- <a href="">Dashboard</a> -->
+            <!-- <p>Matière : {{ $professeur->matiere ?? 'Aucune matière trouvée' }}</p> -->
     
         </div>
     </div>
@@ -78,7 +64,7 @@
 
         /* height: 600px; */
         margin-bottom: 0px;
-        line-height: 1.1;
+        line-height: 0.8;
     }
     .B{
         font-family:  Times, serif;
@@ -125,7 +111,7 @@
     }
     .A h1{
         margin-bottom: 20px;
-        margin-left: 50px;
+        margin-left: 80px;
         font-family:  Times, serif;
         font-weight: bold;
 
@@ -151,7 +137,6 @@
         color: white;
         font-family:  Times, serif;
         font-size: 20px;
-        margin-left:80px;
 
     }
     .X:hover {
@@ -162,11 +147,15 @@
     }
     .B a{
         background-color:rgb(4, 238, 234) ;
+        /* background-color: blanchedalmond; */
         color:white;
         border: 1px solid;
         border-radius: 5px;
 
     }
+
+
+
 
 
 

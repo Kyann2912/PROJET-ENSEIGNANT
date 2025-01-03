@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnseignantController;
+use App\Http\Controllers\ContactController;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -185,4 +187,21 @@ Route::get('/modifier/emploi/{id}', [EnseignantController::class, 'modifier_empl
 
 
 Route::get('/professeur/paiements', [EnseignantController::class, 'paiementsProfesseur'])->name('professeur.paiements')->middleware('auth');
+
+
+Route :: get('/modifier/utilisateur/{id}',[EnseignantController::class,'modifier']);
+
+
+Route::post('/inscription/update',[EnseignantController::class,'inscription']);
+
+
+Route::get('/professeur/password', [EnseignantController::class, 'franck']);
+
+
+
+Route::post('/new/password',[EnseignantController::class,'modifier_password']);
+
+
+Route::post('/contacter/administration',[ContactController::class,'contacter_administration']);
+
 

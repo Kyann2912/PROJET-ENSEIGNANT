@@ -11,15 +11,16 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <form action="" method="post">
-                <h1>Contacter l'Administration</h1> <br>
-                <label for="">Nom Prenoms</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
-                <label for="">Email</label> <br>
-                <input type="text" class="form-control"  name="" id=""><br>
-                <label for="">Motif</label> <br>
+            <h1>Contacter l'Administration</h1> <br>
+            <form action="/contacter/administration" method="post">
+                @csrf
+                <label for="name">Nom Prenoms</label> <br>
+                <input type="text" class="form-control"  name="name" id="name"><br>
+                <label for="email">Email</label> <br>
+                <input type="text" class="form-control"  name="email" id="email"><br>
+                <label for="motif">Motif</label> <br>
                 <div class="Yann">
-                    <textarea id="content" name="content"  required class="form-control"></textarea>
+                    <textarea id="content" name="motif"  class="form-control"></textarea>
                 </div>
                 <br>
                 <input type="submit" value="Contacter" class="X">
@@ -27,7 +28,21 @@
 
         </div>
         <div class="B">
-
+            @error('name')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('email')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('motif')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
             <h1 style="margin-top: 200px;font-weight: bold;">Welcome Professeur !</h1>
             <a href="/professeur">DAHSBOARD</a> 
             <!-- <a href="">Dashboard</a> -->
@@ -144,6 +159,8 @@
         height: 130px;
         margin-left: 40px;
         width: 290px;
+        font-family:  Times, serif;
+
     }
 
 

@@ -29,6 +29,21 @@
                 {{ session('reponse') }}
             </div>
         @endif
+        @if(session('bibi'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('bibi') }}
+            </div>
+        @endif
+        @if(session('yanno'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('yanno') }}
+            </div>
+        @endif
+        @if(session('sms'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('sms') }}
+            </div>
+        @endif
             <thead>
                 @php
                     $yann = 1;
@@ -50,7 +65,7 @@
                   <td>{{ $user->prenoms }}</td>
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->role }}</td>
-                  <td><a href="" class="btn btn-info">MODIFIER</a> <a href="/supprimer/utilisateur/{{ $user->id }}" class="btn btn-danger">SUPPRIMER</a></td>
+                  <td><a href="/modifier/utilisateur/{{ $user->id }}" class="btn btn-info">MODIFIER</a> <a href="/supprimer/utilisateur/{{ $user->id }}" class="btn btn-danger">SUPPRIMER</a></td>
                  </tr>
                 @php
                     $yann++;

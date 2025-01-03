@@ -43,8 +43,25 @@
 
         </div>
         <div class="B">
+            @error('id_professeur')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('nbre_heures')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('cours')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            <br>
+            <br>
 
-            <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1>
+            <!-- <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1> -->
             <p>Vous voullez consulter la liste des paiements ajoutés ?</p>
             <a href="/liste-paiements">Consulter</a> 
     

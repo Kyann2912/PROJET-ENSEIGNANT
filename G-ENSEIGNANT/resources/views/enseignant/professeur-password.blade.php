@@ -11,41 +11,30 @@
   <body>
     <div class="Tout">
         <div class="A">
-            <h1>Ajouter un Emploi du Temps </h1> <br>
-            <form action="{{ route('emploi.store') }}" method="POST" enctype="multipart/form-data">
+            <h1>Modifier votre Mot de Passe </h1> <br>
+            <form action="/new/password" method="post">
                 @csrf
-                <label for="">Email-Professeur</label> <br>
-                <input type="text" class="form-control"  name="email" id="email"><br>
-                <!-- <label for="">Nom-Fichier</label> <br>
-                <input type="text" class="form-control"  name="name_fichier" id="name_fichier"><br> -->
-                <label for="">Image</label> <br>
-                <input type="file" class="form-control"  name="file_path" id="file_path" placeholde="Chosir une image"><br>
-                <label for="">Période-Debut</label> <br>
-                <input type="date" class="form-control"  name="debut" id="debut"><br>
-                <label for="">Période-Fin</label> <br>
-                <input type="date" class="form-control"  name="fin" id="fin"><br>
+                <label for="">Mot de Passe</label> <br>
+                <input type="password" class="form-control"  name="password" id="password"><br>
+                <label for="">Confirmation</label> <br>
+                <input type="password" class="form-control"  name="confirmation" id="confirmation"><br>
                 <br>
-                <button class="X" type="submit">Ajouter</button>
+                <input type="submit" value="Modifier" class="X">
             </form>
 
         </div>
         <div class="B">
-        @error('email')
+            @if(session('confirmation'))
+            <div class="alert alert-success" role="alert" style="margin:20px;">
+                {{ session('confirmation') }}
+            </div>
+            @endif
+            @error('password')
                 <div class="alert alert-danger" role="alert" style="margin:20px;">
                 {{ $message }}
                 </div>
             @enderror
-            @error('file_path')
-                <div class="alert alert-danger" role="alert" style="margin:20px;">
-                {{ $message }}
-                </div>
-            @enderror
-            @error('debut')
-                <div class="alert alert-danger" role="alert" style="margin:20px;">
-                {{ $message }}
-                </div>
-            @enderror
-            @error('fin')
+            @error('confirmation')
                 <div class="alert alert-danger" role="alert" style="margin:20px;">
                 {{ $message }}
                 </div>
@@ -54,8 +43,8 @@
             <br>
             <!-- <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1> -->
             <p>Vous voulez consulter la liste des emplois du temps ajoutés ?</p>
-            <a href="/liste-emplois">Consulter</a> 
-
+            <a href="/professeur">Tableau de bord</a> 
+            <!-- <a href="">Dashboard</a> -->
     
         </div>
     </div>
@@ -78,7 +67,7 @@
 
         /* height: 600px; */
         margin-bottom: 0px;
-        line-height: 1.1;
+        line-height: 0.8;
     }
     .B{
         font-family:  Times, serif;
@@ -125,7 +114,7 @@
     }
     .A h1{
         margin-bottom: 20px;
-        margin-left: 50px;
+        margin-left: 60px;
         font-family:  Times, serif;
         font-weight: bold;
 
@@ -151,7 +140,6 @@
         color: white;
         font-family:  Times, serif;
         font-size: 20px;
-        margin-left:80px;
 
     }
     .X:hover {
@@ -162,11 +150,15 @@
     }
     .B a{
         background-color:rgb(4, 238, 234) ;
+        /* background-color: blanchedalmond; */
         color:white;
         border: 1px solid;
         border-radius: 5px;
 
     }
+
+
+
 
 
 

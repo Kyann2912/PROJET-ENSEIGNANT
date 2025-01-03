@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use Barryvdh\DomPDF\Facade\Pdf;  //Pour le pdf
 use Carbon\Carbon;
-
 use Illuminate\Http\Request;
 use App\Models\Filiere;  //Modèle filiere
 use App\Models\User; 
@@ -15,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Professeur;  
 use Illuminate\Support\Facades\Mail; //Pour le mail
 use App\Mail\MessageNotification;    //Pour le mail
+use App\Mail\Password;    //Pour le mail
+
 use App\Mail\Email;    //Pour le mail
 
 use App\Models\Emploi_temps;  //Modèle emploi du temps 
@@ -38,6 +39,14 @@ class EnseignantController extends Controller
             'file_path' => 'required|file|mimes:pdf,jpg,png,docx|max:2048',
             'debut' => 'required|date',
             'fin' => 'required|date',
+        ],
+        [
+            'email.required' => 'Veuillez renseigner tous les champs',
+            'file_path.required' => 'Veuillez renseigner tous les champs',
+            'debut.required' => 'Veuillez renseigner tous les champs',
+            'fin.required' => 'Veuillez renseigner tous les champs',
+
+
         ]);
 
         $filePath = $request->file('file_path')->store('emplois', 'public');
@@ -200,7 +209,7 @@ class EnseignantController extends Controller
         $user = Auth::user();
         $nom = $user->name;
         $prenoms = $user->prenoms;
-        return view('enseignant.professeur',compact('nom','prenoms'));
+        return view('enseignant.professeur',compact('nom','prenoms',));
     }
 
     public function N(){
@@ -235,6 +244,13 @@ class EnseignantController extends Controller
             'heure' =>'required|string',
             'date_occupation' =>'required'
 
+        ],[
+            'nom_salle.required' => 'Veuillez renseigner tous les champs',
+            'occupation.required' => 'Veuillez renseigner tous les champs',
+            'heure.required' => 'Veuillez renseigner tous les champs',
+            'date_occupation.required' => 'Veuillez renseigner tous les champs',
+
+
         ]);
 
         $occupation = new  Salle();
@@ -260,6 +276,12 @@ class EnseignantController extends Controller
             'cours'=>'required',
             'nbre_heures'=>'required',
             'montant_heure'=>'required',
+        ],[
+            'id_professeur.required' => 'Veuillez renseigner tous les champs',
+            'filiere_niveau.required' => 'Veuillez renseigner tous les champs',
+            'cours.required' => 'Veuillez renseigner tous les champs',
+            'nbre_heures.required' => 'Veuillez renseigner tous les champs',
+            'montant_heure.required' => 'Veuillez renseigner tous les champs',
         ]);
 
         $total = $request->montant_heure * $request->nbre_heures;
@@ -288,6 +310,10 @@ class EnseignantController extends Controller
             'departement' =>'required',
             'nom_filiere' =>'required',
             'responsable' =>'required'
+        ],[
+            'departement.required' => 'Veuillez renseigner tous les champs',
+            'nom_filiere.required' => 'Veuillez renseigner tous les champs',
+            'responsable.required' => 'Veuillez renseigner tous les champs',
         ]);
 
         $filiere = new Filiere();
@@ -385,9 +411,20 @@ class EnseignantController extends Controller
             'name' => 'required',
             'prenoms' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required_if:role,professeur',
+            'matiere' => 'required_if:role,professeur',
             'role' => 'required',
             'password' => 'required_if:role,admin',
+        ],
+        [
+            'name.required' => 'Veuillez renseigner tous les champs',
+            'prenoms.required' => 'Veuillez renseigner tous les champs',
+            'email.required' => 'Veuillez renseigner tous les champs',
+            'matiere.required_if:role,professeur' => 'Veuillez renseigner tous les champs',
+            'role.required' => 'Veuillez renseigner tous les champs',
+            'password.required_if:role,admin' => 'Veuillez renseigner tous les champs',
+
+
+
         ]);
             $user = new User();
     
@@ -431,7 +468,7 @@ class EnseignantController extends Controller
         $currentFiliereCount = session('utilisateur', 0);
         session(['utilisateur' => $currentFiliereCount + 1]);
 
-        return redirect('/tableau');
+        return redirect('/liste-utilisateurs')->with('sms','Utilisateur ajouté avec succès');
     
     }
 
@@ -469,6 +506,8 @@ class EnseignantController extends Controller
     public function supprimer_utilisateur($id){
         $user = User :: find($id);
         $user->delete();
+        return redirect('liste-utilisateurs')->with('bibi', 'Utilisateur supprimé avec succès');
+
         
         $currentFiliereCount = session('uti_supprimer', 0);
         session(['uti_supprimer' => $currentFiliereCount + 1]);
@@ -655,23 +694,107 @@ public function paiementsProfesseur()
     return view('enseignant.professeur-paiement', compact('paiements'));
 
 
-    // Vérifier que l'utilisateur est un professeur
-    // if ($user->role === 'professeur') {
-    //     // Récupérer les paiements en fonction de l'email de l'utilisateur
-    //     $paiements = Paiement::whereHas('professeur', function ($query) use ($user) {
-    //         $query->where('email', $user->email);
-    //     })->get();
-
-    //     // Retourner la vue avec les paiements
-    //     // return view('enseignant.paiements-professeur', compact('paiements'));
-    //     return view('enseignant.professeur-paiement', compact('paiements'));
-
-    // } else {
-    //     // Rediriger avec un message d'erreur si l'utilisateur n'est pas un professeur
-    //     return redirect('/connexion')->with('message', 'Vous n\'êtes pas autorisé à accéder à cette page.');
-    // }
 }
 
+    public  function modifier($id){
+
+        $utilisateur = User :: find($id);
+        $professeur = Professeur :: find($id);
+        return view('enseignant.update-utilisateur',compact('utilisateur','professeur'));
+
+    }
+
+    public function inscription(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'prenoms' => 'required',
+            'email' => 'required|email|unique:users,email,' . $request->id,
+            'role' => 'required',
+            'password' => 'nullable|required_if:role,admin|required_if:role,professeur',
+            'matiere' => 'nullable|required_if:role,professeur',
+        ]);
+    
+        // Récupérer l'utilisateur
+        $user = User::find($request->id);
+    
+        // Mise à jour des informations utilisateur
+        $user->name = $request->name;
+        $user->prenoms = $request->prenoms;
+        $user->email = $request->email;
+        $user->role = $request->role;
+    
+        // Génération du mot de passe
+        $mot_passe = Str::random(8);
+        if ($user->role === 'admin') {
+            $user->password = Hash::make($request->password);
+        } elseif ($user->role === 'professeur') {
+            $user->password = Hash::make($mot_passe);
+        }
+    
+        $user->save();
+    
+        // Mise à jour des rôles spécifiques
+        if ($user->role === 'admin') {
+            $admin = Administrateur::where('id_user', $user->id)->first();
+            $admin->save();
+        } elseif ($user->role === 'professeur') {
+            $professeur = Professeur::where('id_user', $user->id)->first();
+
+            $professeur->matiere = $request->matiere;
+            $professeur->save();
+    
+            // Envoi de l'e-mail au professeur
+            // Mail::to($request->email)->send(new MessageNotification($request->name, $request->prenoms, $mot_passe));
+        }
+    
+        return redirect('/liste-utilisateurs')->with('yanno','Utilisateur modifié avec succès');
+    }
+
+    public function franck(){
+        return view('enseignant.professeur-password');
+    }
+
+
+    
+    public function modifier_password(Request $request)
+    {
+        // Validation des champs
+        $request->validate([
+            'password' => 'required|string|min:8',
+            'confirmation' => 'required|string|min:8',
+
+        ],[
+            'password.required'=>'Veuillez saisir tous les champs',
+            'confirmation.required'=>'Veuillez saisir tous les champs',
+
+        ]);
+
+        if ($request->password != $request->confirmation) {
+            return redirect('/professeur/password')->with('confirmation' , 'H');
+        }else{
+
+            $user = Auth::user();
+            $nom = $user->name;
+            $prenoms = $user->prenoms;
+            $email = $user->email;
+            $user->password = Hash::make($request->password);
+            Mail::to($email)->send(new Password($nom,$prenoms));
+            $user->save();
+
+            return redirect('/professeur');
+            
+        }
+    
+
+    }
+
+
+    
+
+    
+    
+    
+    
 
 
 

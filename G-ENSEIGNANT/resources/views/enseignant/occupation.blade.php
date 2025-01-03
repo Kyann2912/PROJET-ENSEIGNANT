@@ -49,8 +49,24 @@
 
         </div>
         <div class="B">
-
-            <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1>
+            @error('nom_salle')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('occupation')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('date_occupation')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            <br>
+            <br>
+            <!-- <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1> -->
             <p>Vous voullez consulter la liste des occupations ajoutés ?</p>
             <a href="/liste-occupations">Consulter</a> 
     

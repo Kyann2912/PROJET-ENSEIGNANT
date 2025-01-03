@@ -35,9 +35,35 @@
 
         </div>
         <div class="B">
-
-            <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1>
-            <p>Vous voulez consulter la liste des utilisateurs ajoutés ?</p>
+            @error('name')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('prenoms')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('email')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('password')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            @error('matiere')
+                <div class="alert alert-danger" role="alert" style="margin:20px;">
+                {{ $message }}
+                </div>
+            @enderror
+            <br>
+            <br>
+            <!-- <h1 style="margin-top: 200px;font-weight: bold;">Welcome Admin !</h1> -->
+            <p>Vous voulez consulter la liste des emplois du temps ajoutés ?</p>
             <a href="/liste-utilisateurs">Consulter</a> 
             <!-- <a href="">Dashboard</a> -->
     
